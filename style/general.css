@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    background: #f2f1f1;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/*
+.slidePage {
+    position: fixed;   
+    bottom: 0;        
+    left: 0;           
+    width: 100%;       
+    padding: 15px;     
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+*/
+
+.slideBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 75px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    background: white;
+    border-top: 1px solid #e5e7eb;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: #9ca3af;
+    /* אפור כמו בתמונה */
+    font-size: 12px;
+
+    transition: all 0.2s ease;
+}
+
+.navItem .icon {
+    width: 24px;
+    height: 24px;
+
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    margin-bottom: 4px;
+}
+
+/* מצב פעיל */
+.navItem.active {
+    color: #2563eb;
+    /* כחול */
+}
+
+/* אנימציה בלחיצה */
+.navItem:active {
+    transform: scale(0.95);
+}
+
+
+
+
+button,
+button:focus,
+button:active {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
+.calFood {
+    background-color: #2563eb;
+    /* כחול פרימיום */
+}
+
+.proFood {
+    background-color: #1e40af;
+    /* כחול כהה */
+}
+
+.fatFood {
+    background-color: #3b82f6;
+    /* כחול בהיר */
+}
+
+.carFood {
+    background-color: #0ea5e9;
+    /* טורקיז רך */
+}

@@ -1,0 +1,497 @@
+/* סגנון בסיס */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* עוטף הכותרת */
+.header {
+  padding: 16px 12px 12px;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(30, 58, 138, 0.05);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* כותרת ראשית */
+.title2 {
+  text-align: center;
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 16px 0;
+  animation: fadeInScale 0.6s ease-out;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.title2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(40px, 10vw, 60px);
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #0ea5e9);
+  border-radius: 2px;
+  animation: expandWidth 0.8s ease-out 0.3s both;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: clamp(40px, 10vw, 60px);
+  }
+}
+
+/* אזור החיפוש */
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 0.6s ease-out 0.2s both;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* שדה החיפוש */
+.search-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 14px;
+  gap: 10px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 16px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.search-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(14, 165, 233, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.search-wrapper:hover {
+  border-color: #bfdbfe;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
+}
+
+.search-wrapper:hover::before {
+  opacity: 1;
+}
+
+/* אייקון חיפוש */
+.search-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #64748b;
+  stroke-width: 2.5;
+  fill: none;
+  transition: all 0.3s ease;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+/* שדה קלט */
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: #1e293b;
+  font-weight: 500;
+  z-index: 1;
+  min-width: 0;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.search-input:focus::placeholder {
+  color: #cbd5e1;
+}
+
+/* פוקוס על החיפוש */
+.search-wrapper:focus-within {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.search-wrapper:focus-within::before {
+  opacity: 1;
+}
+
+.search-wrapper:focus-within .search-icon {
+  stroke: #3b82f6;
+  transform: scale(1.1);
+}
+
+/* כפתור הוספה */
+.addBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.addBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.addBtn:active {
+  transform: translateY(-2px) rotate(90deg) scale(0.95);
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
+}
+
+/* מיכל המאכלים הנבחרים */
+.selectFood {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.1);
+  margin-top: 12px;
+  border: 2px solid #bfdbfe;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* צ'יפ של מאכל */
+.selectFoodList {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  border-radius: 50px;
+  padding: 8px 12px 8px 14px;
+  border: 2px solid #93c5fd;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 13px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+  animation: chipIn 0.4s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes chipIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.selectFoodList::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: left 0.5s ease;
+}
+
+.selectFoodList:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
+  border-color: #3b82f6;
+}
+
+.selectFoodList:hover::before {
+  left: 100%;
+}
+
+/* שם המאכל */
+.foodName {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+  transition: color 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.selectFoodList:hover .foodName {
+  color: #1e3a8a;
+}
+
+/* כפתור מחיקה */
+.delteSelectBtn {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.2);
+  flex-shrink: 0;
+}
+
+.delteSelectBtn:hover {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.delteSelectBtn:active {
+  transform: scale(0.95) rotate(90deg);
+}
+
+/* התאמות למסכים קטנים (מובייל) */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 10px 10px;
+  }
+  
+  .title2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .searchBar {
+    gap: 6px;
+  }
+  
+  .search-wrapper {
+    height: 44px;
+    padding: 0 12px;
+    border-radius: 14px;
+  }
+  
+  .search-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .search-input {
+    font-size: 14px;
+  }
+  
+  .addBtn {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    border-radius: 14px;
+  }
+  
+  .selectFood {
+    padding: 10px;
+    gap: 6px;
+    margin-top: 10px;
+    border-radius: 14px;
+  }
+  
+  .selectFoodList {
+    padding: 6px 10px 6px 12px;
+    font-size: 12px;
+    gap: 5px;
+  }
+  
+  .foodName {
+    font-size: 12px;
+    max-width: 120px;
+  }
+  
+  .delteSelectBtn {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+}
+
+/* התאמות לטאבלטים */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    padding: 18px 14px 14px;
+  }
+  
+  .search-wrapper {
+    height: 52px;
+  }
+  
+  .addBtn {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .foodName {
+    max-width: 200px;
+  }
+}
+
+/* התאמות למחשב */
+@media (min-width: 769px) {
+  .header {
+    padding: 24px 16px 16px;
+  }
+  
+  .searchBar {
+    gap: 12px;
+  }
+  
+  .search-wrapper {
+    height: 56px;
+    padding: 0 18px;
+    gap: 12px;
+    border-radius: 18px;
+  }
+  
+  .search-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .search-input {
+    font-size: 16px;
+  }
+  
+  .addBtn {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+    border-radius: 18px;
+  }
+  
+  .selectFood {
+    padding: 16px;
+    gap: 10px;
+    margin-top: 16px;
+    border-radius: 20px;
+  }
+  
+  .selectFoodList {
+    padding: 10px 16px 10px 18px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  
+  .foodName {
+    font-size: 14px;
+    max-width: 250px;
+  }
+  
+  .delteSelectBtn {
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+  }
+}
+
+/* התאמות למסכים גדולים מאוד */
+@media (min-width: 1200px) {
+  .header {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .selectFood {
+    max-width: 1200px;
+    margin: 16px auto 0;
+  }
+}

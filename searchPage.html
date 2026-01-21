@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy">
+
+    <title>Mesa</title>
+
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="stylesheet" href="./style/searchPage.css">
+    <link rel="stylesheet" href="./style/popup.css">
+    <link rel="stylesheet" href="./style/searchBar.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 class="title2">Browse Recipes</h1>
+
+        <div class="searchBar">
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="16.65" y1="16.65" x2="21" y2="21"></line>
+                </svg>
+
+                <input type="text" class="search-input" placeholder="Enter ingredients or name of food (exm. fish, oil)" />
+            </div>
+
+            <button class="addBtn" type="button">+</button>
+        </div>
+
+        <div class="selectFood"></div>
+
+    </div>
+
+    
+    <p class="typeFoodTitle"></p>
+    <div class="foodList"></div>
+
+
+    <div class="recipeDetails"></div>
+
+
+    <div class="slideBar">
+
+        <a href="./index.html" class="navItem">
+            <svg viewBox="0 0 24 24" class="icon">
+                <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" />
+            </svg>
+            <span>Home</span>
+        </a>
+
+        <a href="./searchPage.html" class="navItem active">
+            <svg viewBox="0 0 24 24" class="icon">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="16.5" y1="16.5" x2="21" y2="21" />
+            </svg>
+            <span>Search</span>
+        </a>
+
+        <a href="./profile.html" class="navItem">
+            <svg viewBox="0 0 24 24" class="icon">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c0-4 4-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+
+
+    <script type="module" src="./scripts/searchPage.js"></script>
+
+</body>
+
+</html>

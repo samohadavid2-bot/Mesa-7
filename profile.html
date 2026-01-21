@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy">
+
+    <title>Mesa - Get Started</title>
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="stylesheet" href="./style/profile.css">
+</head>
+<body>
+    <!-- Container ראשי שמכיל את כל השאלון -->
+    <div class="container">
+        
+        <!-- Header עם כותרת ו-progress bar -->
+        <div class="header">
+            <h1>Let's Get Started</h1>
+            <p>Tell us about yourself to personalize your experience</p>
+            
+            <!-- Progress bar שמראה באיזה שלב אנחנו -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <!-- מציג שאלה נוכחית מתוך סך הכל -->
+            <div class="question-counter" id="questionCounter">
+                Question 1 of 6
+            </div>
+        </div>
+
+        <form id="questionnaireForm">
+            <!-- שאלה 1: גיל -->
+            <div class="question-card active" data-question="1">
+                <label class="question-label">What's your age?</label>
+                <input 
+                    type="number" 
+                    id="age" 
+                    class="number-input" 
+                    placeholder="Enter your age" 
+                    min="13" 
+                    max="120" 
+                    required>
+            </div>
+
+            <!-- שאלה 2: מין -->
+            <div class="question-card" data-question="2">
+                <label class="question-label">What's your gender?</label>
+                <div class="button-group">
+                    <button type="button" class="option-button" data-value="male">
+                        <span class="icon">♂</span>
+                        <span class="text">Male</span>
+                    </button>
+                    <button type="button" class="option-button" data-value="female">
+                        <span class="icon">♀</span>
+                        <span class="text">Female</span>
+                    </button>
+                </div>
+                <!-- Hidden input לשמירת הערך -->
+                <input type="hidden" id="gender" required>
+            </div>
+
+            <!-- שאלה 3: גובה -->
+            <div class="question-card" data-question="3">
+                <label class="question-label">What's your height?</label>
+                <div class="input-with-unit">
+                    <input 
+                        type="number" 
+                        id="height" 
+                        class="number-input" 
+                        placeholder="Enter height" 
+                        min="100" 
+                        max="250" 
+                        step="0.1" 
+                        required>
+                    <span class="unit">cm</span>
+                </div>
+            </div>
+
+            <!-- שאלה 4: משקל -->
+            <div class="question-card" data-question="4">
+                <label class="question-label">What's your current weight?</label>
+                <div class="input-with-unit">
+                    <input 
+                        type="number" 
+                        id="weight" 
+                        class="number-input" 
+                        placeholder="Enter weight" 
+                        min="30" 
+                        max="300" 
+                        step="0.1" 
+                        required>
+                    <span class="unit">kg</span>
+                </div>
+            </div>
+
+            <!-- שאלה 5: רמת פעילות -->
+            <div class="question-card" data-question="5">
+                <label class="question-label">What's your weekly activity level?</label>
+                <div class="activity-options">
+                    <button type="button" class="activity-button" data-value="sedentary">
+                        <span class="activity-icon">🪑</span>
+                        <div>
+                            <span class="activity-title">Sedentary</span>
+                            <span class="activity-desc">Sitting most of the day</span>
+                        </div>
+                    </button>
+                    <button type="button" class="activity-button" data-value="light">
+                        <span class="activity-icon">🚶</span>
+                        <div>
+                            <span class="activity-title">Lightly Active</span>
+                            <span class="activity-desc">Light exercise 1-3 days/week</span>
+                        </div>
+                    </button>
+                    <button type="button" class="activity-button" data-value="moderate">
+                        <span class="activity-icon">🏃</span>
+                        <div>
+                            <span class="activity-title">Moderately Active</span>
+                            <span class="activity-desc">Moderate exercise 3-5 days/week</span>
+                        </div>
+                    </button>
+                    <button type="button" class="activity-button" data-value="very">
+                        <span class="activity-icon">💪</span>
+                        <div>
+                            <span class="activity-title">Very Active</span>
+                            <span class="activity-desc">Intense exercise 6-7 days/week</span>
+                        </div>
+                    </button>
+                </div>
+                <input type="hidden" id="activityLevel" required>
+            </div>
+
+            <!-- שאלה 6: מטרה -->
+            <div class="question-card" data-question="6">
+                <label class="question-label">What's your main goal?</label>
+                <div class="goal-options">
+                    <button type="button" class="goal-button" data-value="lose">
+                        <span class="goal-icon">📉</span>
+                        <div>
+                            <span class="goal-title">Lose Weight</span>
+                            <span class="goal-desc">Create a calorie deficit</span>
+                        </div>
+                    </button>
+                    <button type="button" class="goal-button" data-value="maintain">
+                        <span class="goal-icon">⚖️</span>
+                        <div>
+                            <span class="goal-title">Maintain Weight</span>
+                            <span class="goal-desc">Stay at current weight</span>
+                        </div>
+                    </button>
+                    <button type="button" class="goal-button" data-value="gain">
+                        <span class="goal-icon">📈</span>
+                        <div>
+                            <span class="goal-title">Gain Weight</span>
+                            <span class="goal-desc">Build muscle mass</span>
+                        </div>
+                    </button>
+                </div>
+                <input type="hidden" id="goal" required>
+            </div>
+
+            <!-- כפתורי ניווט: Previous, Next, Submit -->
+            <div class="navigation-buttons">
+                <!-- כפתור חזרה לשאלה הקודמת -->
+                <button 
+                    type="button" 
+                    id="prevBtn" 
+                    class="nav-button prev-button" 
+                    style="display: none;">
+                    ← Previous
+                </button>
+                
+                <!-- כפתור למעבר לשאלה הבאה -->
+                <button 
+                    type="button" 
+                    id="nextBtn" 
+                    class="nav-button next-button" 
+                    disabled>
+                    Next →
+                </button>
+                
+                <!-- כפתור סיום ושליחה -->
+                <button 
+                    type="submit" 
+                    id="submitBtn" 
+                    class="nav-button submit-button" 
+                    style="display: none;" 
+                    disabled>
+                    Complete Setup
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="./scripts/profile.js"></script>
+</body>
+</html>

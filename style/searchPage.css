@@ -1,0 +1,672 @@
+/* כותרת ראשית - עם אנימציית כניסה */
+.title2 {
+  font-size: clamp(24px, 6vw, 32px);
+  text-align: center;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  animation: fadeInDown 0.8s ease-out;
+  letter-spacing: -0.5px;
+  padding: 0 16px;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+.typeFoodTitle {
+  margin-top: 20px;
+  margin-left: 22px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #3b82f6;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.5px;
+
+  margin-top: 20px;
+  margin-left: 20px;
+
+  animation: fadeInSlide 0.8s ease-out, glow 2s ease-in-out infinite;
+}
+/* 
+
+/* קו תחתון מתרחב */
+.typeFoodTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: #3b82f6;
+  animation: expandLine 1s ease-out 0.4s forwards;
+}
+
+
+/* אנימציות */
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandLine {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes brightPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+    color: #60a5fa;
+  }
+}
+
+/* רשימת מתכונים */
+.foodList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.foodList>div:first-child {
+  margin-top: 20px;
+  border-radius: 16px;
+  animation: slideInUp 0.6s ease-out;
+}
+
+.foodList>div:last-child {
+  margin-bottom: 75px;
+  border-radius: 16px;
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* כרטיס מתכון - עיצוב משופר */
+.recipe-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.1);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.recipe-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1e40af, #0ea5e9);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.15);
+  border-color: #3b82f6;
+}
+
+.recipe-card:hover::before {
+  opacity: 1;
+}
+
+.recipe-card:active {
+  transform: translateY(-2px);
+}
+
+.recipe-card:last-child {
+  margin-bottom: 60px;
+}
+
+/* תמונה */
+.image-box {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
+  pointer-events: none;
+}
+
+.recipe-card:hover .image-box {
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+.image-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 12px 14px;
+  display: flex;
+  gap: 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 1;
+  animation: fadeIn 0.6s ease-out 0.3s both;
+  flex-wrap: wrap;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* תוכן */
+.recipe-content {
+  padding: 16px;
+  background: white;
+  position: relative;
+}
+
+.recipe-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.recipe-title {
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 700;
+  color: #1e3a8a;
+  letter-spacing: -0.3px;
+  flex: 1;
+  transition: color 0.2s ease;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.recipe-card:hover .recipe-title {
+  color: #2563eb;
+}
+
+/* כפתור הוספה - מעוצב ומונפש */
+.add-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.add-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.add-btn:hover {
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.add-btn:hover::before {
+  opacity: 1;
+}
+
+.add-btn:active {
+  transform: rotate(90deg) scale(0.95);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+}
+
+/* ערכים תזונתיים - עיצוב מרענן */
+.nutrition {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.nut {
+  padding: 10px 6px;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.nut::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.nut:hover::before {
+  left: 100%;
+}
+
+.nut:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nut-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  line-height: 1.2;
+}
+
+.nut-value {
+  font-size: 16px;
+  font-weight: 800;
+  margin-top: 4px;
+  line-height: 1;
+}
+
+/* צבעים לערכים תזונתיים - גווני כחול */
+.cal {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+}
+
+.pro {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  color: #0c4a6e;
+  border: 1px solid #7dd3fc;
+}
+
+.carb {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  color: #075985;
+  border: 1px solid #bae6fd;
+}
+
+.fat {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1e3a8a;
+  border: 1px solid #93c5fd;
+}
+
+/* הודעת צפייה */
+.view-recipe {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.recipe-card:hover .view-recipe {
+  color: #3b82f6;
+}
+
+/* אנימציות נוספות לכרטיסים */
+.recipe-card:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.recipe-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.recipe-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.recipe-card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.recipe-card:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* מובייל קטן - עד 375px */
+@media (max-width: 375px) {
+  .title2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .foodList {
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .foodList>div:first-child {
+    margin-top: 16px;
+  }
+
+  .recipe-card {
+    border-radius: 14px;
+  }
+
+  .image-box {
+    height: 180px;
+  }
+
+  .image-info {
+    padding: 10px 12px;
+    font-size: 11px;
+    gap: 10px;
+  }
+
+  .recipe-content {
+    padding: 14px;
+  }
+
+  .recipe-title {
+    font-size: 16px;
+  }
+
+  .add-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .nutrition {
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .nut {
+    padding: 8px 4px;
+    border-radius: 8px;
+  }
+
+  .nut-label {
+    font-size: 9px;
+  }
+
+  .nut-value {
+    font-size: 14px;
+  }
+
+  .view-recipe {
+    font-size: 11px;
+    margin-top: 10px;
+  }
+
+  .recipe-card:last-child {
+    margin-bottom: 30px;
+  }
+}
+
+/* מובייל רגיל - 376px עד 480px */
+@media (min-width: 376px) and (max-width: 480px) {
+  .title2 {
+    font-size: 24px;
+  }
+
+  .foodList {
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .image-box {
+    height: 200px;
+  }
+
+  .nutrition {
+    gap: 6px;
+  }
+
+  .nut {
+    padding: 10px 6px;
+  }
+
+  .nut-value {
+    font-size: 16px;
+  }
+}
+
+/* טאבלט קטן - 481px עד 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .foodList {
+    gap: 18px;
+    padding: 16px;
+    max-width: 600px;
+  }
+
+  .foodList>div:first-child {
+    margin-top: 30px;
+  }
+
+  .recipe-card {
+    border-radius: 18px;
+  }
+
+  .image-box {
+    height: 240px;
+  }
+
+  .image-info {
+    padding: 14px 16px;
+    font-size: 13px;
+    gap: 14px;
+  }
+
+  .recipe-content {
+    padding: 18px;
+  }
+
+  .recipe-title-row {
+    margin-bottom: 14px;
+  }
+
+  .add-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 23px;
+  }
+
+  .nutrition {
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .nut {
+    padding: 11px 7px;
+    border-radius: 11px;
+  }
+
+  .nut-value {
+    font-size: 17px;
+  }
+
+  .view-recipe {
+    font-size: 13px;
+    margin-top: 13px;
+  }
+
+  .recipe-card:last-child {
+    margin-bottom: 50px;
+  }
+}
+
+/* מחשב - 769px ומעלה */
+@media (min-width: 769px) {
+  .foodList {
+    gap: 24px;
+    padding: 20px;
+    max-width: 600px;
+  }
+
+  .foodList>div:first-child {
+    margin-top: 40px;
+    border-radius: 20px;
+  }
+
+  .recipe-card {
+    border-radius: 20px;
+  }
+
+  .recipe-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(30, 58, 138, 0.2);
+  }
+
+  .image-box {
+    height: 280px;
+  }
+
+  .image-info {
+    padding: 16px 18px;
+    font-size: 13px;
+    gap: 18px;
+  }
+
+  .recipe-content {
+    padding: 20px;
+  }
+
+  .recipe-title-row {
+    margin-bottom: 16px;
+  }
+
+  .recipe-title {
+    font-size: 20px;
+  }
+
+  .add-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  .nutrition {
+    gap: 8px;
+    margin-top: 16px;
+    display: flex;
+  }
+
+  .nut {
+    flex: 1;
+    padding: 12px 8px;
+    border-radius: 12px;
+  }
+
+  .nut-label {
+    font-size: 11px;
+  }
+
+  .nut-value {
+    font-size: 18px;
+  }
+
+  .nut:hover {
+    transform: translateY(-4px);
+  }
+
+  .view-recipe {
+    margin-top: 14px;
+    font-size: 13px;
+  }
+
+  .recipe-card:last-child {
+    margin-bottom: 70px;
+  }
+}
+
+/* מסכים גדולים מאוד - 1200px ומעלה */
+@media (min-width: 1200px) {
+  .foodList {
+    max-width: 700px;
+  }
+
+  .image-box {
+    height: 320px;
+  }
+}

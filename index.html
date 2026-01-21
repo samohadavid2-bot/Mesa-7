@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy">
+
+    <title>Meas</title>
+
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="stylesheet" href="./style/index.css">
+    <link rel="stylesheet" href="./style/historyDiv.css">
+    <link rel="stylesheet" href="./style/ownRecipePopup.css">
+
+</head>
+
+<body>
+
+
+    <!-- open title div -->
+    <div class="titleDiv">
+
+
+        <p class="title">Another day - another protein!</p>
+        <p class="date"></p>
+
+        <div class="data">
+
+            <div class="calorisDiv">
+                <p class="t">Caloris</p>
+
+                <p>
+                    <span id="calories" class="G">0</span>
+                    <span class="calNeed"></span>
+                </p>
+
+            </div>
+
+            <div class="proDiv">
+                <p class="t">Protein</p>
+
+                <p>
+                    <span id="proteinG" class="G">0</span>
+                    <span class="proNeed"></span>
+                </p>
+
+
+            </div>
+
+            <div class="carDiv">
+                <p class="t">Carbs</p>
+
+                <p>
+                    <span id="carbsG" class="G">0</span>
+                    <span class="carNeed"></span>
+                </p>
+
+            </div>
+
+            <div class="fatDiv">
+                <p class="t">Fat</p>
+
+                <p>
+                    <span id="fatG" class="G">0</span>
+                    <span class="fatNeed"></span>
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <!--popup to add own recipe-->
+    <button class="own" type="button">Add your own recipe</button>
+
+    <!--the popup dont see until the user click the button-->
+    <div class="ownRecipe-popup">
+        <p class="titlePopup">Craete your recipe</p>
+
+        <button class="X" type="button">X</button>
+
+        <p class="ErroreMsg">* You did not enter some of the details.</p>
+
+        <input class="nameRecipe" placeholder="Enter the name of the recipe (chicken, pasta...)" type="text">
+        <input class="proInput" placeholder="Enter the amount of protein (g)" type="number">
+        <input class="carInput" placeholder="Enter the amount of carbohydrates (g)" type="number">
+        <input class="calInput" placeholder="Enter the amount of calories (g)" type="number">
+        <input class="fatInput" placeholder="Enter the amount of Fats (g)" type="number">
+
+        <button class="addOwnBtn">Add recipe</button>
+    </div>
+
+
+    <!-- open history div-->
+    <div class="history"></div>
+    <div class="recipeDetails"></div>
+
+
+    <button class="reastBtn" type="button">Delete all</button>
+
+
+
+    <div class="slideBar">
+
+        <a href="./index.html" class="navItem active">
+            <svg viewBox="0 0 24 24" class="icon">
+                <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" />
+            </svg>
+            <span>Home</span>
+        </a>
+
+        <a href="./searchPage.html" class="navItem">
+            <svg viewBox="0 0 24 24" class="icon">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="16.5" y1="16.5" x2="21" y2="21" />
+            </svg>
+            <span>Search</span>
+        </a>
+
+        <a href="./profile.html" class="navItem">
+            <svg viewBox="0 0 24 24" class="icon">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c0-4 4-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+
+
+
+    <script type="module" src="./scripts/index.js"></script>
+</body>
+
+</html>
