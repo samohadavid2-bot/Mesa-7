@@ -3,6 +3,7 @@ import { closeRecipePopup } from "./recipesPopup.js";
 import addToToday from "./tracker.js";
 import { createRecipeCard } from "./recipeCard.js";
 import { MEAL_TYPES, KOSHER_TYPES, getMealType, getKosherType, currentMealType } from "./recipeMeta.js";
+import { spokenToKeys, parseRecipeIngredient, INGREDIENT_BY_KEY } from "./ingredients.js";
 window.closeRecipePopup = closeRecipePopup;
 
 // kept for backwards compatibility (other code imported `add` from this file)
@@ -40,11 +41,25 @@ function renderFilters() {
   renderTabs(kosherTabs, KOSHER_TYPES, kosherFilter, (key) => { kosherFilter = key; update(); });
 }
 
+const recipeKeys = new Map();   // recipe id -> Set of ingredient keys
+function keysOf(recipe) {
+  if (!recipeKeys.has(recipe.id)) {
+    const keys = recipe.ingredients.flatMap(ing => parseRecipeIngredient(ing).options.flat());
+    // include parents too, so "גבינה" (any cheese) finds recipes with feta
+    recipeKeys.set(recipe.id, new Set([...keys, ...keys.map(k => INGREDIENT_BY_KEY[k]?.parent).filter(Boolean)]));
+  }
+  return recipeKeys.get(recipe.id);
+}
+
 function matchesSearch(recipe) {
   return selectFood.every(selectedItem => {
     const q = selectedItem.toLowerCase();
-    return recipe.ingredients.some(ing => ing.item.toLowerCase().includes(q))
-      || recipe.name.toLowerCase().includes(q);
+    if (recipe.ingredients.some(ing => ing.item.toLowerCase().includes(q)) || recipe.name.toLowerCase().includes(q)) {
+      return true;
+    }
+    // Hebrew (or other known names): "קוטג'" finds every recipe with cottage cheese
+    const keys = spokenToKeys(selectedItem);
+    return keys.length > 0 && keys.every(k => keysOf(recipe).has(k));
   });
 }
 

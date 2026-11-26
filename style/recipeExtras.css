@@ -104,3 +104,10 @@
 .selectFood:empty {
   display: none;
 }
+
+/* Hebrew translation next to each ingredient in the recipe popup */
+.heName {
+  color: #64748b;
+  font-size: 0.9em;
+  margin-left: 6px;
+}

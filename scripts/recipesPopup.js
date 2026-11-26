@@ -1,5 +1,6 @@
 import add from './tracker.js';
 import { getKosherType, kosherLabel } from './recipeMeta.js';
+import { ingredientHe } from './ingredients.js';
 
 // פותח את הפופאפ
 export function openRecipePopup(recipe) {
@@ -100,7 +101,10 @@ export function getRecipePopupHTML(recipe) {
         <p class="groceiesTitle">Ingredients</p>
         <ul class="groceies">
           ${recipe.ingredients
-            .map(i => `<li>${i.item} – ${i.amount}</li>`)
+            .map(i => {
+              const he = ingredientHe(i.item);
+              return `<li>${i.item} – ${i.amount}${he ? ` <span class="heName" dir="rtl">${he}</span>` : ""}</li>`;
+            })
             .join("")}
         </ul>
 

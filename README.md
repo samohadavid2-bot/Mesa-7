@@ -11,7 +11,15 @@ A kosher, fitness-focused meal tracker. Track calories and macros, browse 300+ k
 | `fridge.html` (Fridge) | Photograph your fridge, get the list of ingredients, and see which recipes you can make |
 | `profile.html` | First-time questionnaire that sets your daily targets |
 
-## Fridge scanner
+## Adding what's in your fridge (free, no key needed)
+
+- **Quick pick**: on the Fridge page, tap items by shelf (dairy, meat & fish, vegetables...). Every item has a Hebrew name and an emoji.
+- **Voice**: tap 🎤 and say what you have in Hebrew, e.g. "ביצים, קוטג', עגבניות ומלפפונים". The Android app uses the phone's own speech recognizer (`@capacitor-community/speech-recognition`); in Chrome it uses the Web Speech API.
+- **Typing**: Hebrew or English, with suggestions.
+
+Hebrew names and words for every ingredient live in `scripts/ingredientsHe.js`. The Search page also understands Hebrew ("קוטג'" finds every cottage cheese recipe), and the recipe popup shows the Hebrew name next to each ingredient.
+
+## Fridge scanner (optional AI photo scan)
 
 1. Open **Fridge** and tap **⚙ AI settings**. Pick an AI engine and paste its key:
    - **Google Gemini (free, default)**: create a key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey) with a Google account. No credit card. If billing isn't turned on for that Google project, Google can't charge you; when the free daily limit runs out, scanning stops until it resets.

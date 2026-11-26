@@ -425,3 +425,120 @@ body .header {
   color: #1e3a8a;
   margin-bottom: 10px;
 }
+
+/* ---------- voice ---------- */
+.micBtn {
+  width: 44px;
+  flex-shrink: 0;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 10px;
+  background: #eff6ff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.micBtn.listening {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.voiceStatus {
+  font-size: 13px;
+  margin-top: 8px;
+  color: #334155;
+  direction: rtl;
+  text-align: right;
+}
+
+.voiceStatus:empty {
+  display: none;
+}
+
+.voiceStatus.ok {
+  color: #15803d;
+}
+
+.voiceStatus.warn {
+  color: #b45309;
+}
+
+.voiceStatus.error {
+  color: #b91c1c;
+  direction: ltr;
+  text-align: left;
+}
+
+/* ---------- quick pick ---------- */
+.quickPick {
+  margin-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 12px;
+}
+
+.quickPick summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #1e3a8a;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.hebrewHint {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.quickTabs {
+  margin-bottom: 10px;
+}
+
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: 8px;
+}
+
+.quickItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 4px 8px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  min-height: 84px;
+  transition: all 0.15s ease;
+}
+
+.quickItem.on {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6 inset;
+}
+
+.quickEmoji {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.quickHe {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e3a8a;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.quickEn {
+  font-size: 10px;
+  color: #94a3b8;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.chipLabel bdi:first-child {
+  font-weight: 700;
+}

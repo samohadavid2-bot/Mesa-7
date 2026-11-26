@@ -73,15 +73,23 @@
                 <h2>2. Your ingredients</h2>
                 <button class="linkBtn clearBtn" type="button">Clear</button>
             </div>
-            <p class="hint">Check the list: tap ✕ to remove a mistake, or add anything the photo missed.</p>
+            <p class="hint">Tap what you have below, press 🎤 and say it (e.g. "ביצים, קוטג', עגבניות"), or scan a photo. Tap ✕ to remove a mistake.</p>
 
             <div class="ingredientChips"></div>
 
             <div class="addIngredientRow">
-                <input class="ingredientInput" list="ingredientOptions" placeholder="Add an ingredient (e.g. eggs, feta)" autocomplete="off">
+                <input class="ingredientInput" list="ingredientOptions" placeholder="Add an ingredient (ביצים, cottage...)" autocomplete="off">
                 <datalist id="ingredientOptions"></datalist>
-                <button class="addIngredientBtn" type="button">+</button>
+                <button class="addIngredientBtn" type="button" aria-label="Add">+</button>
+                <button class="micBtn" type="button" aria-label="Say what you have">🎤</button>
             </div>
+            <p class="voiceStatus" role="status"></p>
+
+            <details class="quickPick" open>
+                <summary>Quick pick: tap what you have <span class="hebrewHint">· בחירה מהירה</span></summary>
+                <div class="quickTabs filterRow" dir="rtl"></div>
+                <div class="quickGrid" dir="rtl"></div>
+            </details>
 
             <details class="pantry">
                 <summary>Pantry items I always have <span class="pantryCount"></span></summary>

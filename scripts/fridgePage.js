@@ -2,7 +2,9 @@ import recipes from "./recipes.js";
 import { closeRecipePopup } from "./recipesPopup.js";
 import { createRecipeCard } from "./recipeCard.js";
 import { MEAL_TYPES, KOSHER_TYPES, getMealType, getKosherType } from "./recipeMeta.js";
-import { INGREDIENTS, PANTRY_CHOICES, DEFAULT_PANTRY, textToKey, keyLabel, findRecipes } from "./ingredients.js";
+import { INGREDIENTS, PANTRY_CHOICES, DEFAULT_PANTRY, textToKey, spokenToKeys, keyLabel, keyLabelHe, keyEmoji, ingredientHe, findRecipes } from "./ingredients.js";
+import { HE_CATEGORIES } from "./ingredientsHe.js";
+import { listen, voiceSupported, VoiceError } from "./voiceInput.js";
 import { PROVIDERS, getProvider, setProvider, getApiKey, setApiKey, prepareImage, scanFridge, ScanError } from "./fridgeScan.js";
 window.closeRecipePopup = closeRecipePopup;
 
@@ -199,7 +201,7 @@ function renderIngredients() {
   if (fridge.length === 0) {
     const empty = document.createElement("p");
     empty.className = "emptyChips";
-    empty.textContent = "No ingredients yet — scan a photo or add them by hand.";
+    empty.textContent = "No ingredients yet. Tap items below, use 🎤, or scan a photo.";
     chips.appendChild(empty);
     return;
   }
@@ -210,17 +212,23 @@ function renderIngredients() {
 
     const label = document.createElement("span");
     label.className = "chipLabel";
-    label.textContent = keyLabel(item.key);
+    const main = document.createElement("bdi");
+    main.textContent = `${keyEmoji(item.key)} ${keyLabelHe(item.key, { short: true })}`;
+    label.appendChild(main);
     chip.title = [item.name, item.quantity].filter(Boolean).join(" · ");
 
-    if (item.name && item.name.toLowerCase() !== keyLabel(item.key).toLowerCase()) {
-      const seen = document.createElement("span");
-      seen.className = "chipSeen";
-      const seenName = document.createElement("bdi");   // keeps Hebrew names readable
-      seenName.textContent = item.name;
-      seen.append(seenName, item.quantity ? ` · ${item.quantity}` : "");
-      label.appendChild(seen);
+    // second line: English name, plus what the photo scan actually saw
+    const seen = document.createElement("span");
+    seen.className = "chipSeen";
+    const seenParts = [keyLabel(item.key)];
+    if (item.name && ![keyLabel(item.key), keyLabelHe(item.key)].some(n => n.toLowerCase() === item.name.toLowerCase())) {
+      seenParts.push(item.name);
     }
+    if (item.quantity) seenParts.push(item.quantity);
+    const seenText = document.createElement("bdi");   // keeps Hebrew and English readable side by side
+    seenText.textContent = seenParts.join(" · ");
+    seen.appendChild(seenText);
+    label.appendChild(seen);
 
     if (item.confidence === "low") {
       const q = document.createElement("span");
@@ -234,7 +242,7 @@ function renderIngredients() {
     remove.type = "button";
     remove.className = "chipRemove";
     remove.textContent = "✕";
-    remove.setAttribute("aria-label", `Remove ${keyLabel(item.key)}`);
+    remove.setAttribute("aria-label", `Remove ${keyLabelHe(item.key)}`);
     remove.addEventListener("click", () => {
       fridge.splice(index, 1);
       saveFridge();
@@ -250,8 +258,8 @@ function renderIngredients() {
 function addTyped() {
   const value = ingredientInput.value.trim();
   if (!value) return;
-  // the datalist shows labels, map them (or anything typed) to a key
-  const byLabel = INGREDIENTS.find(i => i.label.toLowerCase() === value.toLowerCase());
+  // the datalist shows Hebrew and English names, map them (or anything typed) to a key
+  const byLabel = INGREDIENTS.find(i => [i.label, i.he].some(n => n.toLowerCase() === value.toLowerCase()));
   const key = byLabel ? byLabel.key : textToKey(value);
   if (key) {
     addToFridge({ key, name: value, quantity: "", confidence: "high" });
@@ -275,9 +283,95 @@ $(".clearBtn").addEventListener("click", () => {
 
 const datalist = $("#ingredientOptions");
 for (const ing of INGREDIENTS.filter(i => !i.staple)) {
-  const opt = document.createElement("option");
-  opt.value = ing.label;
-  datalist.appendChild(opt);
+  for (const name of [ing.he, ing.label]) {
+    const opt = document.createElement("option");
+    opt.value = name;
+    datalist.appendChild(opt);
+  }
+}
+
+// ---------- voice input ----------
+const micBtn = $(".micBtn");
+const voiceStatus = $(".voiceStatus");
+
+function setVoiceStatus(text, type = "") {
+  voiceStatus.textContent = text;
+  voiceStatus.className = "voiceStatus" + (type ? " " + type : "");
+}
+
+if (!voiceSupported()) micBtn.hidden = true;
+
+micBtn.addEventListener("click", async () => {
+  micBtn.classList.add("listening");
+  setVoiceStatus("🎤 מקשיב… אמור מה יש לך, למשל: ביצים, קוטג', עגבניות");
+  try {
+    const guesses = await listen();
+    // use the recognizer's best guess that contains known ingredients
+    let keys = [];
+    let heard = guesses[0] || "";
+    for (const g of guesses) {
+      keys = spokenToKeys(g);
+      if (keys.length) { heard = g; break; }
+    }
+    if (!keys.length) {
+      setVoiceStatus(heard ? `שמעתי "${heard}" אבל לא זיהיתי מצרכים. נסה שוב.` : "לא שמעתי כלום. נסה שוב.", "warn");
+      return;
+    }
+    const added = keys.filter(key => addToFridge({ key, name: "", quantity: "", confidence: "high" }));
+    saveFridge();
+    renderAll();
+    setVoiceStatus(
+      added.length
+        ? "✓ הוספתי: " + added.map(k => keyLabelHe(k, { short: true })).join(", ")
+        : "כל מה שאמרת כבר ברשימה.",
+      "ok"
+    );
+  } catch (err) {
+    console.error(err);
+    setVoiceStatus(err instanceof VoiceError ? err.message : "Voice input didn't work. Try again.", "error");
+  } finally {
+    micBtn.classList.remove("listening");
+  }
+});
+
+// ---------- quick pick ----------
+const QUICK_CATEGORIES = Object.keys(HE_CATEGORIES).filter(c => c !== "spices");
+let quickCategory = QUICK_CATEGORIES[0];
+
+function renderQuickPick() {
+  renderTabs($(".quickTabs"), QUICK_CATEGORIES.map(c => ({ key: c, label: HE_CATEGORIES[c] })), quickCategory, (c) => {
+    quickCategory = c;
+    renderQuickPick();
+  });
+
+  const grid = $(".quickGrid");
+  grid.innerHTML = "";
+  for (const ing of INGREDIENTS.filter(i => i.category === quickCategory && !i.staple)) {
+    const on = fridge.some(f => f.key === ing.key);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "quickItem" + (on ? " on" : "");
+    btn.setAttribute("aria-pressed", on);
+
+    const emoji = document.createElement("span");
+    emoji.className = "quickEmoji";
+    emoji.textContent = ing.emoji;
+    const he = document.createElement("span");
+    he.className = "quickHe";
+    he.textContent = ing.he;
+    const en = document.createElement("span");
+    en.className = "quickEn";
+    en.textContent = ing.label;
+    btn.append(emoji, he, en);
+
+    btn.addEventListener("click", () => {
+      if (on) fridge = fridge.filter(f => f.key !== ing.key);
+      else addToFridge({ key: ing.key, name: "", quantity: "", confidence: "high" });
+      saveFridge();
+      renderAll();
+    });
+    grid.appendChild(btn);
+  }
 }
 
 // ---------- pantry ----------
@@ -289,7 +383,8 @@ function renderPantry() {
     btn.type = "button";
     const on = pantry.includes(key);
     btn.className = "pantryChip" + (on ? " on" : "");
-    btn.textContent = (on ? "✓ " : "+ ") + keyLabel(key);
+    btn.textContent = `${on ? "✓" : "+"} ${keyEmoji(key)} ${keyLabelHe(key)}`;
+    btn.title = keyLabel(key);
     btn.addEventListener("click", () => {
       pantry = on ? pantry.filter(k => k !== key) : [...pantry, key];
       savePantry();
@@ -325,7 +420,10 @@ function matchInfo(match) {
   if (match.missing.length) {
     const missing = document.createElement("p");
     missing.className = "matchMissing";
-    missing.textContent = "✗ Missing: " + match.missing.join(", ");
+    missing.textContent = "✗ Missing: " + match.missing.map(item => {
+      const he = ingredientHe(item);
+      return he ? `${item} (${he})` : item;
+    }).join(", ");
     box.appendChild(missing);
   }
   return box;
@@ -385,6 +483,7 @@ function renderResults() {
 
 function renderAll() {
   renderIngredients();
+  renderQuickPick();
   renderPantry();
   renderResults();
 }

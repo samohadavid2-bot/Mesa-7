@@ -1,4 +1,5 @@
 // Ingredient dictionary + matching logic.
+import { HE, HE_CATEGORIES } from "./ingredientsHe.js";
 //
 // Every recipe ingredient (e.g. "Cherry tomatoes, halved") is mapped to a
 // canonical ingredient key (e.g. "tomato"). The fridge scanner asks Claude to
@@ -230,16 +231,24 @@ export function toWords(text) {
   return String(text)
     .toLowerCase()
     .replace(/&/g, " and ")
-    .replace(/[^a-z0-9'\s-]/g, " ")
+    .replace(/[\u05F3\u2019`]/g, "'")            // Hebrew geresh / curly quote -> '
+    .replace(/[\u0591-\u05C7]/g, "")             // Hebrew vowel marks (nikud)
+    .replace(/[^a-z0-9'\u05D0-\u05EA\s-]/g, " ")
     .replace(/-/g, " ")
     .split(/\s+/)
     .filter(Boolean)
     .map(singular);
 }
 
-export const INGREDIENTS = RAW.map(([key, label, category, aliases, opts = {}]) => ({
-  key, label, category, aliases, parent: opts.parent || null, staple: !!opts.staple
-}));
+export const INGREDIENTS = RAW.map(([key, label, category, aliases, opts = {}]) => {
+  const [emoji = "🍽️", he = label, heAliases = []] = HE[key] || [];
+  // the Hebrew name is also an alias, unless it's a description like "עוף (חזה / ירכיים)"
+  const heWords = /[()/]/.test(he) ? heAliases : [he, ...heAliases];
+  return {
+    key, label, category, emoji, he, heCategory: HE_CATEGORIES[category] || category,
+    aliases: [...aliases, ...heWords], parent: opts.parent || null, staple: !!opts.staple
+  };
+});
 
 export const INGREDIENT_BY_KEY = Object.fromEntries(INGREDIENTS.map(i => [i.key, i]));
 
@@ -248,13 +257,22 @@ const ALIASES = INGREDIENTS
   .flatMap(ing => [ing.key, ...ing.aliases].map(a => ({ words: toWords(a), key: ing.key })))
   .sort((a, b) => b.words.length - a.words.length || b.words.join(" ").length - a.words.join(" ").length);
 
+const HEBREW_RE = /[\u05D0-\u05EA]/;
+
+// Hebrew glues "and" / "the" to the next word: "ועגבניות", "החלב", "והביצים"
+function sameWord(word, aliasWord) {
+  if (word === aliasWord) return true;
+  if (!HEBREW_RE.test(aliasWord)) return false;
+  return word === "ו" + aliasWord || word === "ה" + aliasWord || word === "וה" + aliasWord;
+}
+
 function findAlias(words, used) {
   for (const alias of ALIASES) {
     const n = alias.words.length;
     for (let i = 0; i + n <= words.length; i++) {
       let ok = true;
       for (let j = 0; j < n; j++) {
-        if (used[i + j] || words[i + j] !== alias.words[j]) { ok = false; break; }
+        if (used[i + j] || !sameWord(words[i + j], alias.words[j])) { ok = false; break; }
       }
       if (ok) return { key: alias.key, start: i, end: i + n };
     }
@@ -285,6 +303,28 @@ export function textToKeys(text) {
 /** Single best key for something the user typed or Claude detected. */
 export function textToKey(text) {
   return textToKeys(text)[0] || null;
+}
+
+/** Only the known ingredients mentioned in a sentence (used for voice input). */
+export function spokenToKeys(text) {
+  return textToKeys(text).filter(k => !k.startsWith("x:"));
+}
+
+/** Hebrew name of an ingredient key (falls back to the English label). */
+export function keyLabelHe(key, { short = false } = {}) {
+  const he = INGREDIENT_BY_KEY[key]?.he;
+  if (!he) return keyLabel(key);
+  return short ? he.replace(/\s*\(.*\)$/, "") : he;
+}
+
+/** Hebrew translation of a recipe ingredient line, e.g. "Cherry tomatoes, halved" -> "עגבניות". */
+export function ingredientHe(item) {
+  const keys = parseRecipeIngredient({ item, amount: "" }).options.flat().filter(k => INGREDIENT_BY_KEY[k]);
+  return [...new Set(keys.map(k => INGREDIENT_BY_KEY[k].he.replace(/\s*\(.*\)$/, "")))].join(" / ");
+}
+
+export function keyEmoji(key) {
+  return INGREDIENT_BY_KEY[key]?.emoji || "🍽️";
 }
 
 export function keyLabel(key) {
