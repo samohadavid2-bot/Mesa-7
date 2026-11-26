@@ -34,3 +34,14 @@ Each scan is a paid API call on your own Anthropic account.
 - `scripts/recipeCard.js`, `scripts/recipesPopup.js`, `scripts/tracker.js`: recipe card, recipe popup, and "add to today", shared by the pages.
 
 Run it with any static server, e.g. `python3 -m http.server`, then open `http://localhost:8000`. ES modules don't load from `file://`.
+
+## Android app (APK)
+
+The app is wrapped with [Capacitor](https://capacitorjs.com/) (`android/` folder). To build a debug APK you need Node 22+, JDK 21 and the Android SDK (platform 36, build-tools 35):
+
+```bash
+npm install
+npm run apk        # copies the site to www/, syncs it into android/, runs ./gradlew assembleDebug
+```
+
+The APK ends up at `android/app/build/outputs/apk/debug/app-debug.apk`. After changing any HTML/JS/CSS, run `npm run apk` again.

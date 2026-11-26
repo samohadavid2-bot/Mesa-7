@@ -1,0 +1,8 @@
+{
+  "appId": "com.mesa.app",
+  "appName": "Mesa",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false
+  }
+}
