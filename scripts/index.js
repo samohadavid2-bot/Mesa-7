@@ -211,17 +211,10 @@ submitBtn.addEventListener("click", submit);
 
 // whan the day is over all the recipes reast 
 setInterval(() => {
+    // local time of the user's device
     const now = new Date();
-    const australiaHour = now.toLocaleString("en-US", {
-        timeZone: "Australia/Sydney",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-    });
-
-    const [hourStr, minuteStr] = australiaHour.split(":");
-    const hour = Number(hourStr);
-    const minute = Number(minuteStr);
+    const hour = now.getHours();
+    const minute = now.getMinutes();
 
     if (hour === 0 && minute === 0) {
         resat();

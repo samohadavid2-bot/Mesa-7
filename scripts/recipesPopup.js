@@ -1,4 +1,5 @@
-import add from './searchPage.js';
+import add from './tracker.js';
+import { getKosherType, kosherLabel } from './recipeMeta.js';
 
 // פותח את הפופאפ
 export function openRecipePopup(recipe) {
@@ -19,8 +20,8 @@ export function openRecipePopup(recipe) {
   const addBtn = container.querySelector(".addButton");
   if (addBtn) { 
     addBtn.addEventListener("click", () => {
+      add(recipe);
       window.location.href = "./index.html";
-      add(recipe)
     });
   }
 
@@ -72,6 +73,7 @@ export function getRecipePopupHTML(recipe) {
 
         <div class="popup-meta">
           <span>⏱ ${recipe.prepTime} min</span>
+          <span class="kosher-badge inline kosher-${getKosherType(recipe)}">${kosherLabel(getKosherType(recipe))}</span>
         </div>
 
         <div class="popup-nutrition">

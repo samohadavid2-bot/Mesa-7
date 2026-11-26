@@ -1,0 +1,106 @@
+/* Filters (meal type / kosher) + kosher badges. Used by the search and fridge pages. */
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.filterRow {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 2px 4px;
+}
+
+.filterRow::-webkit-scrollbar {
+  display: none;
+}
+
+.filterTab {
+  flex-shrink: 0;
+  border: 1.5px solid #dbeafe;
+  background: #ffffff;
+  color: #1e3a8a;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterTab.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.kosherTabs .filterTab {
+  font-size: 12px;
+  padding: 5px 12px;
+}
+
+.typeFoodTitle {
+  display: block;
+  margin: 14px 16px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.typeFoodTitle::after {
+  display: none;
+}
+
+.emptyMsg {
+  padding: 24px;
+  text-align: center;
+  color: #475569;
+}
+
+/* ---------- kosher badge ---------- */
+.kosher-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kosher-badge.inline {
+  position: static;
+  box-shadow: none;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.kosher-meat {
+  background: #b91c1c;
+}
+
+.kosher-dairy {
+  background: #1d4ed8;
+}
+
+.kosher-parve {
+  background: #15803d;
+}
+
+.meal-label {
+  opacity: 0.9;
+}
+
+.selectFood:empty {
+  display: none;
+}

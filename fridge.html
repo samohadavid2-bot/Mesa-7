@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mesa - My Fridge</title>
+
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="stylesheet" href="./style/searchPage.css">
+    <link rel="stylesheet" href="./style/popup.css">
+    <link rel="stylesheet" href="./style/searchBar.css">
+    <link rel="stylesheet" href="./style/recipeExtras.css">
+    <link rel="stylesheet" href="./style/fridge.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 class="title2">What's in my fridge?</h1>
+        <p class="fridgeSubtitle">Snap a photo and see which recipes you can cook right now.</p>
+    </div>
+
+    <main class="fridgeMain">
+
+        <!-- 1. photos -->
+        <section class="fridgeCard">
+            <div class="cardHead">
+                <h2>1. Photo of your fridge</h2>
+                <button class="linkBtn settingsToggle" type="button">⚙ AI settings</button>
+            </div>
+
+            <div class="settingsPanel" hidden>
+                <p class="settingsText">
+                    The scan uses Claude (Anthropic's AI). Paste your own API key from
+                    <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>.
+                    It's saved only on this device and sent only to Anthropic.
+                </p>
+                <div class="keyRow">
+                    <input class="apiKeyInput" type="password" placeholder="sk-ant-..." autocomplete="off" spellcheck="false">
+                    <button class="saveKeyBtn primaryBtn small" type="button">Save</button>
+                </div>
+                <p class="keyStatus"></p>
+            </div>
+
+            <div class="photoButtons">
+                <label class="photoBtn">
+                    <input class="cameraInput" type="file" accept="image/*" capture="environment" hidden>
+                    <span>📷 Take a photo</span>
+                </label>
+                <label class="photoBtn secondary">
+                    <input class="uploadInput" type="file" accept="image/*" multiple hidden>
+                    <span>🖼 Upload photos</span>
+                </label>
+            </div>
+            <p class="hint">Tip: open the door wide and add a photo of the door shelves and freezer too (up to 4 photos).</p>
+
+            <div class="thumbs"></div>
+
+            <button class="scanBtn primaryBtn" type="button" disabled>🔍 Scan ingredients</button>
+            <p class="scanStatus" role="status"></p>
+        </section>
+
+        <!-- 2. ingredients -->
+        <section class="fridgeCard">
+            <div class="cardHead">
+                <h2>2. Your ingredients</h2>
+                <button class="linkBtn clearBtn" type="button">Clear</button>
+            </div>
+            <p class="hint">Check the list: tap ✕ to remove a mistake, or add anything the photo missed.</p>
+
+            <div class="ingredientChips"></div>
+
+            <div class="addIngredientRow">
+                <input class="ingredientInput" list="ingredientOptions" placeholder="Add an ingredient (e.g. eggs, feta)" autocomplete="off">
+                <datalist id="ingredientOptions"></datalist>
+                <button class="addIngredientBtn" type="button">+</button>
+            </div>
+
+            <details class="pantry">
+                <summary>Pantry items I always have <span class="pantryCount"></span></summary>
+                <p class="hint">A fridge photo can't see your cupboard. Pick what you usually have at home.</p>
+                <div class="pantryChips"></div>
+            </details>
+        </section>
+
+        <!-- 3. results -->
+        <section class="resultsSection">
+            <h2 class="resultsTitle">3. What you can cook</h2>
+            <div class="filters">
+                <div class="mealTabs filterRow" aria-label="Meal"></div>
+                <div class="kosherTabs filterRow" aria-label="Kosher type"></div>
+            </div>
+            <div class="results"></div>
+        </section>
+
+    </main>
+
+    <div class="recipeDetails"></div>
+
+    <div class="slideBar">
+
+        <a href="./index.html" class="navItem">
+            <svg viewBox="0 0 24 24" class="icon">
+                <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" />
+            </svg>
+            <span>Home</span>
+        </a>
+
+        <a href="./searchPage.html" class="navItem">
+            <svg viewBox="0 0 24 24" class="icon">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="16.5" y1="16.5" x2="21" y2="21" />
+            </svg>
+            <span>Search</span>
+        </a>
+
+        <a href="./fridge.html" class="navItem active">
+            <svg viewBox="0 0 24 24" class="icon">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <line x1="5" y1="10" x2="19" y2="10" />
+                <line x1="8" y1="5" x2="8" y2="7" />
+                <line x1="8" y1="13" x2="8" y2="16" />
+            </svg>
+            <span>Fridge</span>
+        </a>
+
+        <a href="./profile.html" class="navItem">
+            <svg viewBox="0 0 24 24" class="icon">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c0-4 4-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+    <script type="module" src="./scripts/fridgePage.js"></script>
+</body>
+
+</html>

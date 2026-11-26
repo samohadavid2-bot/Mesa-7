@@ -8,10 +8,14 @@ Show me only the recipes you added. It is advisable that the recipes are for exe
 It is important that you pay attention to the fact that the picture and the food are compatible (for example: I will not be a picture of a melawah in a hard-boiled egg recipe)
 
 the recipes shold be food for 1 person. 
+Add mealType (breakfast / lunch / dinner) and kosher (meat / dairy / parve) to every recipe.
+Use simple, common ingredient names (e.g. "Eggs", "Cottage cheese 5%", "Cherry tomatoes, halved") so the fridge scanner can match them.
 
 {               
     id: {the lest ID recipe in the list},
     name: "Malawach with Egg and Cheese",
+    mealType: "breakfast",   // breakfast | lunch | dinner
+    kosher: "dairy",         // meat | dairy | parve  (never mix meat and dairy!)
     ingredients: [
       { item: "Malawach (frozen)", amount: "1 sheet" },
       { item: "Eggs", amount: "2 eggs" },
@@ -500,11 +504,11 @@ const recipes = [
     ingredients: [
       { item: "Chicken", amount: "150g" },
       { item: "Pasta", amount: "100g" },
-      { item: "Pesto", amount: "3 tbsp" },
-      { item: "Parmesan", amount: "30g" },
+      { item: "Dairy-free basil pesto (parve)", amount: "3 tbsp" },
+      { item: "Pine nuts", amount: "1 tbsp" },
       { item: "Olive oil", amount: "1 tbsp" }
     ],
-    instructions: "Cook pasta according to package.\nCook chicken until done, slice.\nDrain pasta and return to pot.\nAdd pesto and olive oil, toss.\nAdd chicken and parmesan.\nMix well.\nServe immediately.",
+    instructions: "Cook pasta according to package.\nCook chicken until done, slice.\nDrain pasta and return to pot.\nAdd pesto and olive oil, toss.\nAdd chicken and pine nuts.\nMix well.\nServe immediately.",
     protein: 34,
     carbs: 50,
     fat: 18,
@@ -732,15 +736,15 @@ const recipes = [
   
   {
     id: 48,
-    name: "Garlic Butter Chicken",
+    name: "Garlic Herb Chicken",
     ingredients: [
       { item: "Chicken breast", amount: "150g" },
       { item: "Garlic", amount: "3 cloves" },
-      { item: "Butter", amount: "2 tbsp" },
+      { item: "Olive oil", amount: "2 tbsp" },
       { item: "Fresh herbs", amount: "2 tbsp" },
       { item: "Lemon", amount: "1/2 lemon" }
     ],
-    instructions: "Season chicken with salt and pepper.\nMelt butter in pan with minced garlic.\nCook chicken 6-7 minutes per side.\nAdd herbs and lemon juice.\nBaste chicken with butter sauce.\nLet rest 5 minutes.\nServe with vegetables or rice.",
+    instructions: "Season chicken with salt and pepper.\nHeat olive oil in pan with minced garlic.\nCook chicken 6-7 minutes per side.\nAdd herbs and lemon juice.\nBaste chicken with the garlic oil.\nLet rest 5 minutes.\nServe with vegetables or rice.",
     protein: 34,
     carbs: 4,
     fat: 20,
@@ -768,14 +772,14 @@ const recipes = [
   },
   {
     id: 50,
-    name: "BBQ Pulled Pork",
+    name: "BBQ Pulled Beef",
     ingredients: [
-      { item: "Pork shoulder", amount: "300g" },
+      { item: "Beef chuck (kosher)", amount: "300g" },
       { item: "BBQ sauce", amount: "1/4 cup" },
       { item: "Bun", amount: "1 bun" },
       { item: "Coleslaw", amount: "1/2 cup" }
     ],
-    instructions: "Slow cook pork for 3 hours until tender.\nShred pork with forks.\nMix with BBQ sauce.\nToast bun lightly.\nPile pulled pork on bun.\nTop with coleslaw.\nServe immediately.",
+    instructions: "Slow cook beef for 3 hours until tender.\nShred beef with forks.\nMix with BBQ sauce.\nToast bun lightly.\nPile pulled beef on bun.\nTop with coleslaw.\nServe immediately.",
     protein: 30,
     carbs: 40,
     fat: 24,
@@ -858,9 +862,9 @@ const recipes = [
   },
   {
     id: 56,
-    name: "Italian Sausage Pasta",
+    name: "Beef Sausage Pasta",
     ingredients: [
-      { item: "Italian sausage", amount: "200g" },
+      { item: "Beef sausage (kosher)", amount: "200g" },
       { item: "Pasta", amount: "150g" },
       { item: "Tomato sauce", amount: "1 cup" },
       { item: "Bell pepper", amount: "1 pepper" },
@@ -1724,9 +1728,9 @@ const recipes = [
       { item: "Egg", amount: "1" },
       { item: "Breadcrumbs", amount: "1/4 cup" },
       { item: "Fresh basil", amount: "2 tbsp" },
-      { item: "Parmesan cheese (optional)", amount: "2 tbsp" }
+      { item: "Nutritional yeast (optional, parve)", amount: "1 tbsp" }
     ],
-    instructions: "Mix ground turkey with egg, breadcrumbs, and half the basil.\nForm into 6-8 meatballs.\nBake meatballs at 190°C for 20 minutes.\nCook pasta according to package directions.\nHeat marinara sauce and add cooked meatballs.\nDrain pasta and top with meatballs and sauce.\nGarnish with remaining basil and optional parmesan.",
+    instructions: "Mix ground turkey with egg, breadcrumbs, and half the basil.\nForm into 6-8 meatballs.\nBake meatballs at 190°C for 20 minutes.\nCook pasta according to package directions.\nHeat marinara sauce and add cooked meatballs.\nDrain pasta and top with meatballs and sauce.\nGarnish with remaining basil and optional nutritional yeast.",
     protein: 50,
     carbs: 56,
     fat: 12,
@@ -2655,7 +2659,7 @@ const recipes = [
   },
   {
     id: 156,
-    name: "Whgole Wheat Toast with Avocado and Eg",
+    name: "Whole Wheat Toast with Avocado and Egg",
     ingredients: [
       { item: "Whole wheat bread", amount: "2 slices" },
       { item: "Avocado", amount: "1/2 avocado" },
@@ -2737,16 +2741,16 @@ const recipes = [
 
   {
     id: 161,
-    name: "Greek Yogurt Chicken Wrap",
+    name: "Tahini Chicken Wrap",
     ingredients: [
       { item: "Whole wheat tortilla", amount: "1 large" },
       { item: "Chicken breast, cooked and diced", amount: "150g" },
-      { item: "Greek yogurt", amount: "3 tbsp" },
+      { item: "Tahini", amount: "2 tbsp" },
       { item: "Cucumber, diced", amount: "1/2 cup" },
       { item: "Lettuce", amount: "1 cup" },
       { item: "Lemon juice", amount: "1 tsp" }
     ],
-    instructions: "Mix Greek yogurt with lemon juice.\nPlace tortilla on plate.\nSpread yogurt mixture on tortilla.\nAdd diced chicken, cucumber, and lettuce.\nRoll tightly and cut in half.\nServe immediately.\nHigh protein meal ready in minutes.",
+    instructions: "Mix tahini with lemon juice and a little water.\nPlace tortilla on plate.\nSpread tahini mixture on tortilla.\nAdd diced chicken, cucumber, and lettuce.\nRoll tightly and cut in half.\nServe immediately.\nHigh protein meal ready in minutes.",
     protein: 42,
     carbs: 28,
     fat: 8,
@@ -2923,7 +2927,7 @@ const recipes = [
     fat: 12,
     calories: 510,
     prepTime: 15,
-    image: ""
+    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800"
   },
   {
     id: 172,
@@ -3235,12 +3239,12 @@ const recipes = [
     ingredients: [
       { item: "Chicken breast, cooked and sliced", amount: "150g" },
       { item: "Romaine lettuce", amount: "2 cups" },
-      { item: "Parmesan cheese, grated", amount: "30g" },
+      { item: "Cherry tomatoes, halved", amount: "1/2 cup" },
       { item: "Whole grain croutons", amount: "1/4 cup" },
-      { item: "Caesar dressing", amount: "2 tbsp" },
+      { item: "Parve Caesar dressing (dairy-free)", amount: "2 tbsp" },
       { item: "Lemon juice", amount: "1 tsp" }
     ],
-    instructions: "Chop romaine lettuce into bite-sized pieces.\nPlace in large bowl.\nAdd sliced chicken and croutons.\nDrizzle with Caesar dressing and lemon.\nTop with grated Parmesan.\nToss everything together.\nClassic high-protein salad.",
+    instructions: "Chop romaine lettuce into bite-sized pieces.\nPlace in large bowl.\nAdd sliced chicken and croutons.\nDrizzle with Caesar dressing and lemon.\nAdd cherry tomatoes.\nToss everything together.\nClassic high-protein salad.",
     protein: 44,
     carbs: 12,
     fat: 18,
@@ -3826,7 +3830,7 @@ const recipes = [
     fat: 8,
     calories: 260,
     prepTime: 5,
-    image: ""
+    image: "https://images.pexels.com/photos/4891597/pexels-photo-4891597.jpeg"
   },
   {
     id: 216,
@@ -4055,7 +4059,7 @@ const recipes = [
     fat: 14,
     calories: 302,
     prepTime: 5,
-    image: ""
+    image: "https://images.pexels.com/photos/10165775/pexels-photo-10165775.jpeg"
   },
   {
     id: 228,
@@ -4093,7 +4097,7 @@ const recipes = [
     fat: 12,
     calories: 308,
     prepTime: 18,
-    image: ""
+    image: "https://images.pexels.com/photos/2456435/pexels-photo-2456435.jpeg"
   },
   {
     id: 230,
@@ -4478,6 +4482,1627 @@ const recipes = [
   }, 
 
   // dinner end 
+
+  // more breakfast recipes (kosher: meat / dairy / parve) start
+  {
+    id: 251,
+    name: "Labneh & Za'atar Toast with Eggs",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Whole wheat bread", amount: "2 slices" },
+      { item: "Labneh", amount: "3 tbsp" },
+      { item: "Za'atar", amount: "1 tsp" },
+      { item: "Eggs, hard-boiled", amount: "2 eggs" },
+      { item: "Cucumber, sliced", amount: "1/2 cucumber" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Boil eggs for 9 minutes, cool and peel.\nToast the bread.\nSpread labneh generously on each slice.\nDrizzle with olive oil and sprinkle za'atar.\nTop with sliced egg and cucumber.\nSeason with a pinch of salt and serve.",
+    protein: 24,
+    carbs: 30,
+    fat: 16,
+    calories: 360,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/7936963/pexels-photo-7936963.jpeg"
+  },
+  {
+    id: 252,
+    name: "Green Shakshuka with Feta",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Eggs", amount: "3 eggs" },
+      { item: "Spinach", amount: "2 cups" },
+      { item: "Zucchini, diced", amount: "1/2 zucchini" },
+      { item: "Green onion, sliced", amount: "2 stalks" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Feta cheese", amount: "30g" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Heat olive oil in a small pan.\nSauté green onion, garlic and zucchini for 4 minutes.\nAdd spinach and cook until wilted.\nMake 3 wells and crack an egg into each.\nCover and cook 5-6 minutes until whites are set.\nCrumble feta on top and serve from the pan.",
+    protein: 26,
+    carbs: 9,
+    fat: 22,
+    calories: 338,
+    prepTime: 20,
+    image: "https://images.pexels.com/photos/29843063/pexels-photo-29843063.jpeg"
+  },
+  {
+    id: 253,
+    name: "Cottage Cheese Omelette",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Eggs", amount: "3 eggs" },
+      { item: "Cottage cheese 5%", amount: "100g" },
+      { item: "Green onion, sliced", amount: "1 stalk" },
+      { item: "Tomato, diced", amount: "1 small" },
+      { item: "Olive oil spray", amount: "1 spray" }
+    ],
+    instructions: "Whisk eggs with salt and pepper.\nSpray a non-stick pan and heat over medium.\nPour in the eggs and cook until almost set.\nSpread cottage cheese and green onion over one half.\nFold and cook 1 more minute.\nServe with diced tomato on the side.",
+    protein: 32,
+    carbs: 6,
+    fat: 18,
+    calories: 314,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/14302155/pexels-photo-14302155.jpeg"
+  },
+  {
+    id: 254,
+    name: "Israeli Breakfast Plate",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "White cheese 5%", amount: "100g" },
+      { item: "Cucumber, diced", amount: "1 cucumber" },
+      { item: "Tomato, diced", amount: "1 tomato" },
+      { item: "Whole wheat bread", amount: "1 slice" },
+      { item: "Olives", amount: "5 olives" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Fry or boil the eggs to your liking.\nDice cucumber and tomato finely for an Israeli salad.\nDress the salad with olive oil, lemon and salt.\nSpoon white cheese into a small bowl.\nArrange eggs, salad, cheese, olives and bread on a plate.\nServe immediately.",
+    protein: 30,
+    carbs: 24,
+    fat: 18,
+    calories: 378,
+    prepTime: 12,
+    image: "https://images.pexels.com/photos/30472978/pexels-photo-30472978.jpeg"
+  },
+  {
+    id: 255,
+    name: "Protein Oatmeal with Banana & Peanut Butter",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Rolled oats", amount: "50g" },
+      { item: "Milk", amount: "1 cup" },
+      { item: "Protein powder (whey)", amount: "1 scoop" },
+      { item: "Banana, sliced", amount: "1/2 banana" },
+      { item: "Peanut butter", amount: "1 tbsp" },
+      { item: "Cinnamon", amount: "1/2 tsp" }
+    ],
+    instructions: "Cook oats in milk over medium heat for 4-5 minutes, stirring.\nRemove from heat and let cool for 1 minute.\nStir in protein powder until smooth.\nTop with banana slices.\nAdd peanut butter and cinnamon.\nServe warm.",
+    protein: 38,
+    carbs: 62,
+    fat: 14,
+    calories: 526,
+    prepTime: 8,
+    image: "https://images.pexels.com/photos/10165864/pexels-photo-10165864.jpeg"
+  },
+  {
+    id: 256,
+    name: "Veggie Egg Muffins",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Eggs", amount: "4 eggs" },
+      { item: "Bell pepper, diced", amount: "1/2 pepper" },
+      { item: "Spinach, chopped", amount: "1 cup" },
+      { item: "Onion, diced", amount: "1/4 onion" },
+      { item: "Salt and pepper", amount: "to taste" },
+      { item: "Olive oil spray", amount: "1 spray" }
+    ],
+    instructions: "Preheat oven to 180°C and spray a muffin tin.\nWhisk eggs with salt and pepper.\nDivide pepper, spinach and onion between 4-6 cups.\nPour egg mixture over the vegetables.\nBake for 18-20 minutes until set.\nCool slightly and enjoy (keeps 3 days in the fridge).",
+    protein: 26,
+    carbs: 8,
+    fat: 18,
+    calories: 298,
+    prepTime: 25,
+    image: "https://images.pexels.com/photos/4103221/pexels-photo-4103221.jpeg"
+  },
+  {
+    id: 257,
+    name: "Tuna Melt Toast",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Canned tuna in water", amount: "1 can (160g)" },
+      { item: "Whole wheat bread", amount: "2 slices" },
+      { item: "Yellow cheese (light)", amount: "30g" },
+      { item: "Tomato, sliced", amount: "1 tomato" },
+      { item: "Mustard", amount: "1 tsp" }
+    ],
+    instructions: "Drain tuna and mix with mustard and black pepper.\nSpread tuna over the bread slices.\nTop with tomato slices and cheese.\nBake or toast at 200°C for 5-6 minutes.\nCheese should be melted and bubbly.\nServe hot.",
+    protein: 40,
+    carbs: 28,
+    fat: 14,
+    calories: 398,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg"
+  },
+  {
+    id: 258,
+    name: "Silan & Tahini Yogurt Bowl",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Greek yogurt", amount: "200g" },
+      { item: "Tahini", amount: "1 tbsp" },
+      { item: "Silan (date syrup)", amount: "1 tbsp" },
+      { item: "Walnuts, chopped", amount: "15g" },
+      { item: "Banana, sliced", amount: "1/2 banana" }
+    ],
+    instructions: "Spoon yogurt into a bowl.\nDrizzle tahini over the yogurt.\nAdd a swirl of silan.\nTop with banana slices.\nSprinkle chopped walnuts.\nServe immediately.",
+    protein: 24,
+    carbs: 30,
+    fat: 18,
+    calories: 378,
+    prepTime: 5,
+    image: "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg"
+  },
+  {
+    id: 259,
+    name: "Chocolate Protein Overnight Oats",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Rolled oats", amount: "50g" },
+      { item: "Milk", amount: "150ml" },
+      { item: "Cocoa powder", amount: "1 tbsp" },
+      { item: "Protein powder (chocolate whey)", amount: "1 scoop" },
+      { item: "Chia seeds", amount: "1 tbsp" }
+    ],
+    instructions: "Add oats, cocoa, protein powder and chia to a jar.\nPour in the milk.\nStir well until no lumps remain.\nCover and refrigerate overnight (at least 6 hours).\nStir again in the morning.\nEat cold or warm for 1 minute.",
+    protein: 36,
+    carbs: 50,
+    fat: 10,
+    calories: 434,
+    prepTime: 5,
+    image: "https://images.pexels.com/photos/704971/pexels-photo-704971.jpeg"
+  },
+  {
+    id: 260,
+    name: "3-Ingredient Banana Oat Pancakes",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Banana, ripe", amount: "1 banana" },
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "Rolled oats", amount: "40g" },
+      { item: "Cinnamon", amount: "1/2 tsp" },
+      { item: "Oil for cooking", amount: "1 tsp" }
+    ],
+    instructions: "Blend banana, eggs, oats and cinnamon until smooth.\nLet the batter rest for 3 minutes.\nHeat a lightly oiled non-stick pan.\nPour small pancakes and cook 2 minutes.\nFlip and cook 1 more minute.\nServe with fruit or a drizzle of honey.",
+    protein: 18,
+    carbs: 48,
+    fat: 11,
+    calories: 363,
+    prepTime: 15,
+    image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800"
+  },
+  {
+    id: 261,
+    name: "Egg White & Spinach Pita",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Egg whites", amount: "5 whites" },
+      { item: "Spinach", amount: "1 cup" },
+      { item: "Whole wheat pita", amount: "1 pita" },
+      { item: "Tomato, diced", amount: "1 small" },
+      { item: "Hummus", amount: "1 tbsp" },
+      { item: "Olive oil spray", amount: "1 spray" }
+    ],
+    instructions: "Spray a pan and wilt the spinach.\nAdd egg whites and scramble until set.\nSeason with salt and pepper.\nWarm the pita and spread hummus inside.\nFill with the egg whites and tomato.\nServe warm.",
+    protein: 28,
+    carbs: 38,
+    fat: 6,
+    calories: 318,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/14537693/pexels-photo-14537693.jpeg"
+  },
+  {
+    id: 262,
+    name: "Cottage Cheese Toast with Egg & Tomato",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Whole wheat bread", amount: "2 slices" },
+      { item: "Cottage cheese 5%", amount: "100g" },
+      { item: "Tomato, sliced", amount: "1 tomato" },
+      { item: "Egg, hard-boiled", amount: "1 egg" },
+      { item: "Black pepper", amount: "to taste" }
+    ],
+    instructions: "Boil the egg for 9 minutes and slice.\nToast the bread.\nSpread cottage cheese on each slice.\nLayer tomato slices on top.\nAdd sliced egg.\nFinish with black pepper and a pinch of salt.",
+    protein: 28,
+    carbs: 30,
+    fat: 9,
+    calories: 313,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/3636958/pexels-photo-3636958.jpeg"
+  },
+  {
+    id: 263,
+    name: "Smoked Salmon & Cream Cheese Bagel",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Whole wheat bagel", amount: "1 bagel" },
+      { item: "Light cream cheese", amount: "2 tbsp" },
+      { item: "Smoked salmon", amount: "60g" },
+      { item: "Red onion, thinly sliced", amount: "2 rings" },
+      { item: "Cucumber, sliced", amount: "1/4 cucumber" },
+      { item: "Capers", amount: "1 tsp" }
+    ],
+    instructions: "Slice and toast the bagel.\nSpread cream cheese on both halves.\nLayer smoked salmon on top.\nAdd cucumber and red onion.\nSprinkle capers.\nClose the bagel and serve.",
+    protein: 26,
+    carbs: 50,
+    fat: 12,
+    calories: 412,
+    prepTime: 7,
+    image: "https://images.pexels.com/photos/6412960/pexels-photo-6412960.jpeg"
+  },
+  {
+    id: 264,
+    name: "Mushroom & Cheese Omelette",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Eggs", amount: "3 eggs" },
+      { item: "Mushrooms, sliced", amount: "1 cup" },
+      { item: "Yellow cheese (light), grated", amount: "30g" },
+      { item: "Olive oil", amount: "1 tsp" },
+      { item: "Salt and pepper", amount: "to taste" }
+    ],
+    instructions: "Sauté mushrooms in olive oil for 4 minutes.\nWhisk eggs with salt and pepper.\nPour eggs over the mushrooms.\nCook until edges set.\nSprinkle cheese, fold the omelette.\nCook 1 more minute and serve.",
+    protein: 30,
+    carbs: 5,
+    fat: 22,
+    calories: 338,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/14302155/pexels-photo-14302155.jpeg"
+  },
+  {
+    id: 265,
+    name: "Berry Protein Smoothie",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Frozen berries", amount: "1 cup" },
+      { item: "Milk", amount: "1 cup" },
+      { item: "Greek yogurt", amount: "100g" },
+      { item: "Banana", amount: "1/2 banana" },
+      { item: "Rolled oats", amount: "2 tbsp" }
+    ],
+    instructions: "Add all ingredients to a blender.\nBlend on high for 45 seconds.\nAdd a splash of water if too thick.\nTaste and add honey if desired.\nPour into a tall glass.\nDrink immediately.",
+    protein: 26,
+    carbs: 52,
+    fat: 6,
+    calories: 366,
+    prepTime: 5,
+    image: "https://images.pexels.com/photos/31472329/pexels-photo-31472329.jpeg"
+  },
+  {
+    id: 266,
+    name: "Savory Oatmeal with Fried Egg",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Rolled oats", amount: "50g" },
+      { item: "Water", amount: "1 cup" },
+      { item: "Egg", amount: "1 egg" },
+      { item: "Spinach", amount: "1 cup" },
+      { item: "Soy sauce", amount: "1 tsp" },
+      { item: "Sesame seeds", amount: "1 tsp" }
+    ],
+    instructions: "Cook oats in water with a pinch of salt for 5 minutes.\nStir in spinach until wilted.\nFry the egg in a lightly oiled pan.\nSeason oats with soy sauce.\nTop with the fried egg.\nSprinkle sesame seeds and serve.",
+    protein: 16,
+    carbs: 32,
+    fat: 12,
+    calories: 300,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/10165864/pexels-photo-10165864.jpeg"
+  },
+  {
+    id: 267,
+    name: "Sabich Breakfast Pita",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Eggplant, sliced", amount: "1/2 eggplant" },
+      { item: "Eggs, hard-boiled", amount: "2 eggs" },
+      { item: "Whole wheat pita", amount: "1 pita" },
+      { item: "Tahini", amount: "1 tbsp" },
+      { item: "Amba sauce", amount: "1 tsp" },
+      { item: "Fresh parsley", amount: "1 tbsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Brush eggplant slices with oil and roast at 220°C for 18 minutes.\nBoil eggs for 9 minutes and slice.\nWarm the pita.\nFill with eggplant and egg slices.\nDrizzle tahini and amba.\nTop with parsley and serve.",
+    protein: 20,
+    carbs: 40,
+    fat: 20,
+    calories: 420,
+    prepTime: 25,
+    image: "https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg"
+  },
+  {
+    id: 268,
+    name: "Avocado & Egg Breakfast Wrap",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Whole wheat tortilla", amount: "1 large" },
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "Avocado", amount: "1/2 avocado" },
+      { item: "Tomato, diced", amount: "1 small" },
+      { item: "Hot sauce", amount: "1 tsp" }
+    ],
+    instructions: "Scramble the eggs with salt and pepper.\nWarm the tortilla in a dry pan.\nMash avocado and spread on the tortilla.\nAdd scrambled eggs and tomato.\nAdd hot sauce to taste.\nRoll up tightly and serve.",
+    protein: 20,
+    carbs: 32,
+    fat: 22,
+    calories: 406,
+    prepTime: 10,
+    image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800"
+  },
+  {
+    id: 269,
+    name: "Chickpea Shakshuka",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "Chickpeas, canned", amount: "1/2 cup" },
+      { item: "Crushed tomatoes", amount: "1 cup" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Bell pepper, diced", amount: "1/2 pepper" },
+      { item: "Cumin", amount: "1/2 tsp" },
+      { item: "Paprika", amount: "1 tsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Sauté onion and pepper in olive oil for 5 minutes.\nAdd cumin and paprika and stir for 30 seconds.\nAdd crushed tomatoes and chickpeas, simmer 8 minutes.\nMake 2 wells and crack in the eggs.\nCover and cook 5-6 minutes.\nServe with bread.",
+    protein: 24,
+    carbs: 30,
+    fat: 14,
+    calories: 342,
+    prepTime: 20,
+    image: "https://images.pexels.com/photos/2067470/pexels-photo-2067470.jpeg"
+  },
+  {
+    id: 270,
+    name: "Apple Cinnamon Yogurt Bowl",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Greek yogurt", amount: "200g" },
+      { item: "Apple, diced", amount: "1 apple" },
+      { item: "Granola", amount: "30g" },
+      { item: "Cinnamon", amount: "1/2 tsp" },
+      { item: "Honey", amount: "1 tsp" }
+    ],
+    instructions: "Dice the apple.\nSpoon yogurt into a bowl.\nTop with apple pieces.\nSprinkle cinnamon over the apple.\nAdd granola.\nDrizzle honey and serve.",
+    protein: 22,
+    carbs: 45,
+    fat: 7,
+    calories: 331,
+    prepTime: 5,
+    image: "https://images.pexels.com/photos/32268820/pexels-photo-32268820.jpeg"
+  },
+  {
+    id: 271,
+    name: "Israeli Cheese Toast",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Whole wheat bread", amount: "2 slices" },
+      { item: "Yellow cheese (light)", amount: "40g" },
+      { item: "Tomato, sliced", amount: "1 tomato" },
+      { item: "Olives, sliced", amount: "5 olives" },
+      { item: "Za'atar", amount: "1/2 tsp" }
+    ],
+    instructions: "Layer cheese, tomato and olives on one slice of bread.\nSprinkle za'atar.\nClose the sandwich.\nToast in a sandwich press or pan until golden.\nCheese should be fully melted.\nCut in half and serve.",
+    protein: 22,
+    carbs: 30,
+    fat: 16,
+    calories: 352,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/4409303/pexels-photo-4409303.jpeg"
+  },
+  {
+    id: 272,
+    name: "Hard-Boiled Eggs & Hummus Plate",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Eggs, hard-boiled", amount: "3 eggs" },
+      { item: "Hummus", amount: "4 tbsp" },
+      { item: "Cucumber, sliced", amount: "1 cucumber" },
+      { item: "Tomato, sliced", amount: "1 tomato" },
+      { item: "Whole wheat pita", amount: "1/2 pita" },
+      { item: "Paprika", amount: "pinch" }
+    ],
+    instructions: "Boil eggs for 9 minutes, cool and peel.\nSpread hummus on a plate.\nHalve the eggs and place on the hummus.\nSprinkle paprika and salt.\nAdd cucumber and tomato on the side.\nServe with warm pita.",
+    protein: 26,
+    carbs: 28,
+    fat: 22,
+    calories: 414,
+    prepTime: 12,
+    image: "https://images.pexels.com/photos/1618898/pexels-photo-1618898.jpeg"
+  },
+  {
+    id: 273,
+    name: "Peanut Butter Banana Oat Smoothie",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Banana", amount: "1 banana" },
+      { item: "Peanut butter", amount: "1 tbsp" },
+      { item: "Rolled oats", amount: "30g" },
+      { item: "Soy milk", amount: "1 cup" },
+      { item: "Cinnamon", amount: "1/2 tsp" },
+      { item: "Ice cubes", amount: "4 cubes" }
+    ],
+    instructions: "Add all ingredients to a blender.\nBlend for 45-60 seconds until smooth.\nAdd more soy milk for a thinner texture.\nTaste and adjust sweetness.\nPour into a glass.\nServe cold.",
+    protein: 20,
+    carbs: 55,
+    fat: 16,
+    calories: 444,
+    prepTime: 5,
+    image: "https://images.pexels.com/photos/33835510/pexels-photo-33835510.jpeg"
+  },
+  {
+    id: 274,
+    name: "Turkish Eggs with Garlic Yogurt",
+    mealType: "breakfast",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "Greek yogurt", amount: "150g" },
+      { item: "Garlic, grated", amount: "1 clove" },
+      { item: "Paprika", amount: "1 tsp" },
+      { item: "Olive oil", amount: "1 tsp" },
+      { item: "Fresh dill", amount: "1 tbsp" },
+      { item: "Whole wheat bread", amount: "1 slice" }
+    ],
+    instructions: "Mix yogurt with grated garlic and salt; spread in a shallow bowl.\nPoach the eggs in simmering water for 3-4 minutes.\nWarm olive oil with paprika for 30 seconds.\nPlace eggs on the yogurt.\nDrizzle paprika oil and sprinkle dill.\nServe with toasted bread.",
+    protein: 28,
+    carbs: 20,
+    fat: 18,
+    calories: 354,
+    prepTime: 12,
+    image: "https://images.pexels.com/photos/29843063/pexels-photo-29843063.jpeg"
+  },
+  {
+    id: 275,
+    name: "Tofu Scramble with Vegetables",
+    mealType: "breakfast",
+    kosher: "parve",
+    ingredients: [
+      { item: "Firm tofu", amount: "200g" },
+      { item: "Turmeric", amount: "1/2 tsp" },
+      { item: "Bell pepper, diced", amount: "1/2 pepper" },
+      { item: "Onion, diced", amount: "1/4 onion" },
+      { item: "Spinach", amount: "1 cup" },
+      { item: "Olive oil", amount: "1 tsp" },
+      { item: "Whole wheat bread", amount: "1 slice" }
+    ],
+    instructions: "Sauté onion and pepper in olive oil for 4 minutes.\nCrumble tofu into the pan.\nAdd turmeric, salt and pepper.\nCook 5 minutes, stirring.\nFold in spinach until wilted.\nServe with toast.",
+    protein: 28,
+    carbs: 22,
+    fat: 16,
+    calories: 344,
+    prepTime: 12,
+    image: "https://images.pexels.com/photos/25906336/pexels-photo-25906336.jpeg"
+  },
+  // more breakfast recipes end
+
+  // more lunch recipes (kosher: meat / dairy / parve) start
+  {
+    id: 276,
+    name: "Chicken Shawarma Pita",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken thighs, sliced", amount: "150g" },
+      { item: "Shawarma spice mix", amount: "1 tbsp" },
+      { item: "Pita bread", amount: "1 pita" },
+      { item: "Tahini", amount: "2 tbsp" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Tomato, diced", amount: "1 tomato" },
+      { item: "Pickles", amount: "2 pickles" },
+      { item: "Onion, sliced", amount: "1/4 onion" }
+    ],
+    instructions: "Toss chicken with shawarma spice, salt and a little oil.\nCook in a hot pan with the onion for 8-10 minutes until charred.\nDice cucumber and tomato for a quick salad.\nWarm the pita.\nFill with chicken, salad and pickles.\nDrizzle tahini and serve.",
+    protein: 40,
+    carbs: 45,
+    fat: 22,
+    calories: 538,
+    prepTime: 25,
+    image: "https://images.pexels.com/photos/32845316/pexels-photo-32845316.jpeg"
+  },
+  {
+    id: 277,
+    name: "Mujadara with Israeli Salad",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Brown lentils", amount: "1/3 cup dry" },
+      { item: "Rice", amount: "1/4 cup dry" },
+      { item: "Onion, sliced", amount: "1 onion" },
+      { item: "Cumin", amount: "1 tsp" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Tomato, diced", amount: "1 tomato" },
+      { item: "Olive oil", amount: "1 tbsp" }
+    ],
+    instructions: "Cook lentils in water for 15 minutes.\nAdd rice, cumin and salt; cook 18 more minutes until tender.\nMeanwhile caramelize onion in olive oil for 15 minutes.\nDice cucumber and tomato for the salad.\nTop mujadara with the onions.\nServe with the salad on the side.",
+    protein: 20,
+    carbs: 70,
+    fat: 12,
+    calories: 468,
+    prepTime: 40,
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800"
+  },
+  {
+    id: 278,
+    name: "One-Pan Turmeric Chicken & Rice",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken breast, cubed", amount: "150g" },
+      { item: "Rice", amount: "1/3 cup dry" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Carrot, diced", amount: "1 carrot" },
+      { item: "Peas", amount: "1/4 cup" },
+      { item: "Turmeric", amount: "1 tsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Brown chicken in olive oil for 5 minutes, remove.\nSauté onion and carrot for 4 minutes.\nAdd rice and turmeric, stir 1 minute.\nAdd 2/3 cup water and salt, return chicken.\nCover and cook on low 18 minutes.\nStir in peas, rest 5 minutes and serve.",
+    protein: 42,
+    carbs: 55,
+    fat: 10,
+    calories: 478,
+    prepTime: 35,
+    image: "https://images.pexels.com/photos/8477525/pexels-photo-8477525.jpeg"
+  },
+  {
+    id: 279,
+    name: "Arayes (Beef-Stuffed Pita)",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Ground beef", amount: "150g" },
+      { item: "Pita bread", amount: "1 pita" },
+      { item: "Onion, grated", amount: "1/4 onion" },
+      { item: "Fresh parsley, chopped", amount: "2 tbsp" },
+      { item: "Baharat spice", amount: "1 tsp" },
+      { item: "Tahini", amount: "1 tbsp" }
+    ],
+    instructions: "Mix beef with onion, parsley, baharat and salt.\nCut the pita in half and open the pockets.\nSpread the meat thinly inside each half.\nBrush outside with a little oil.\nGrill or pan-fry 5 minutes per side until crispy and cooked.\nServe with tahini for dipping.",
+    protein: 36,
+    carbs: 38,
+    fat: 26,
+    calories: 530,
+    prepTime: 25,
+    image: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800"
+  },
+  {
+    id: 280,
+    name: "Tuna Patties with Green Salad",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Canned tuna in water", amount: "2 cans" },
+      { item: "Egg", amount: "1 egg" },
+      { item: "Breadcrumbs", amount: "3 tbsp" },
+      { item: "Onion, grated", amount: "1/4 onion" },
+      { item: "Fresh parsley", amount: "2 tbsp" },
+      { item: "Lettuce", amount: "2 cups" },
+      { item: "Cucumber, sliced", amount: "1/2 cucumber" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Drain tuna well.\nMix tuna, egg, breadcrumbs, onion and parsley.\nForm 4 small patties.\nPan-fry in olive oil 3 minutes per side.\nToss lettuce and cucumber with lemon and salt.\nServe patties over the salad.",
+    protein: 50,
+    carbs: 18,
+    fat: 12,
+    calories: 380,
+    prepTime: 20,
+    image: "https://images.pexels.com/photos/19572489/pexels-photo-19572489.jpeg"
+  },
+  {
+    id: 281,
+    name: "Lentil & Feta Salad",
+    mealType: "lunch",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Lentils, cooked", amount: "1 cup" },
+      { item: "Feta cheese", amount: "40g" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Cherry tomatoes, halved", amount: "1/2 cup" },
+      { item: "Red onion, diced", amount: "1/4 onion" },
+      { item: "Lemon juice", amount: "1 tbsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Rinse and drain the cooked lentils.\nDice the vegetables.\nCombine lentils and vegetables in a bowl.\nDress with lemon, olive oil, salt and pepper.\nCrumble feta on top.\nServe chilled or at room temperature.",
+    protein: 26,
+    carbs: 42,
+    fat: 16,
+    calories: 416,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg"
+  },
+  {
+    id: 282,
+    name: "Chicken Caesar Wrap (Parve Dressing)",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Whole wheat tortilla", amount: "1 large" },
+      { item: "Chicken breast, cooked and sliced", amount: "120g" },
+      { item: "Romaine lettuce", amount: "1 cup" },
+      { item: "Light mayonnaise", amount: "1 tbsp" },
+      { item: "Dijon mustard", amount: "1 tsp" },
+      { item: "Lemon juice", amount: "1 tsp" },
+      { item: "Cherry tomatoes, halved", amount: "4 tomatoes" }
+    ],
+    instructions: "Mix mayonnaise, mustard, lemon and black pepper for the dressing.\nToss lettuce with the dressing.\nLay the tortilla flat.\nAdd lettuce, chicken and tomatoes.\nRoll tightly and cut in half.\nServe immediately.",
+    protein: 38,
+    carbs: 32,
+    fat: 14,
+    calories: 406,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg"
+  },
+  {
+    id: 283,
+    name: "Beef & Broccoli Rice Bowl",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Beef sirloin, thin strips", amount: "150g" },
+      { item: "Broccoli florets", amount: "1 cup" },
+      { item: "Soy sauce", amount: "2 tbsp" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Ginger, grated", amount: "1 tsp" },
+      { item: "Cooked rice", amount: "3/4 cup" },
+      { item: "Sesame oil", amount: "1 tsp" }
+    ],
+    instructions: "Heat sesame oil in a wok over high heat.\nSear beef strips 2 minutes, remove.\nStir-fry broccoli with garlic and ginger 3 minutes.\nReturn beef and add soy sauce.\nToss for 1 minute.\nServe over rice.",
+    protein: 38,
+    carbs: 50,
+    fat: 14,
+    calories: 478,
+    prepTime: 20,
+    image: "https://images.pexels.com/photos/26341190/pexels-photo-26341190.jpeg"
+  },
+  {
+    id: 284,
+    name: "Stuffed Sweet Potato with Cottage Cheese",
+    mealType: "lunch",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Sweet potato", amount: "1 large" },
+      { item: "Cottage cheese 5%", amount: "150g" },
+      { item: "Green onion, sliced", amount: "1 stalk" },
+      { item: "Cherry tomatoes, quartered", amount: "4 tomatoes" },
+      { item: "Black pepper", amount: "to taste" }
+    ],
+    instructions: "Bake sweet potato at 200°C for 40 minutes (or microwave 8 minutes).\nSlice open lengthwise.\nFluff the inside with a fork.\nFill with cottage cheese.\nTop with tomatoes and green onion.\nSeason with black pepper and serve.",
+    protein: 22,
+    carbs: 45,
+    fat: 6,
+    calories: 322,
+    prepTime: 45,
+    image: "https://images.pexels.com/photos/9219074/pexels-photo-9219074.jpeg"
+  },
+  {
+    id: 285,
+    name: "Chicken Noodle Stir-Fry",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken breast, sliced", amount: "150g" },
+      { item: "Whole wheat noodles", amount: "70g dry" },
+      { item: "Cabbage, shredded", amount: "1 cup" },
+      { item: "Carrot, julienned", amount: "1 carrot" },
+      { item: "Soy sauce", amount: "2 tbsp" },
+      { item: "Sesame oil", amount: "1 tsp" },
+      { item: "Garlic, minced", amount: "1 clove" }
+    ],
+    instructions: "Cook noodles according to package and drain.\nStir-fry chicken in sesame oil for 5 minutes.\nAdd garlic, cabbage and carrot, cook 3 minutes.\nAdd noodles and soy sauce.\nToss everything for 2 minutes.\nServe hot.",
+    protein: 40,
+    carbs: 58,
+    fat: 12,
+    calories: 500,
+    prepTime: 20,
+    image: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800"
+  },
+  {
+    id: 286,
+    name: "Salmon Poke Bowl",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Salmon fillet, cooked and flaked", amount: "120g" },
+      { item: "Cooked rice", amount: "3/4 cup" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Avocado, sliced", amount: "1/4 avocado" },
+      { item: "Edamame", amount: "1/4 cup" },
+      { item: "Soy sauce", amount: "1 tbsp" },
+      { item: "Sesame seeds", amount: "1 tsp" }
+    ],
+    instructions: "Season salmon with salt and bake at 200°C for 12 minutes, then flake.\nPlace rice in a bowl.\nArrange salmon, cucumber, avocado and edamame on top.\nDrizzle soy sauce.\nSprinkle sesame seeds.\nServe immediately.",
+    protein: 34,
+    carbs: 52,
+    fat: 20,
+    calories: 524,
+    prepTime: 20,
+    image: "https://images.pexels.com/photos/31871328/pexels-photo-31871328.jpeg"
+  },
+  {
+    id: 287,
+    name: "Hummus Ful Bowl with Egg",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Hummus", amount: "1/2 cup" },
+      { item: "Fava beans (ful), canned", amount: "1/2 cup" },
+      { item: "Egg, hard-boiled", amount: "1 egg" },
+      { item: "Tahini", amount: "1 tbsp" },
+      { item: "Onion, chopped", amount: "1/4 onion" },
+      { item: "Lemon juice", amount: "1 tsp" },
+      { item: "Pita bread", amount: "1/2 pita" }
+    ],
+    instructions: "Warm the fava beans with lemon, cumin and salt.\nSpread hummus in a shallow bowl.\nSpoon ful into the center.\nAdd halved egg.\nDrizzle tahini and top with chopped onion.\nServe with warm pita.",
+    protein: 26,
+    carbs: 50,
+    fat: 22,
+    calories: 502,
+    prepTime: 10,
+    image: "https://images.pexels.com/photos/1618898/pexels-photo-1618898.jpeg"
+  },
+  {
+    id: 288,
+    name: "Tuna Pasta with Olives & Tomatoes",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Whole wheat pasta", amount: "80g" },
+      { item: "Canned tuna in water", amount: "1 can" },
+      { item: "Cherry tomatoes, halved", amount: "1 cup" },
+      { item: "Olives, sliced", amount: "6 olives" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Olive oil", amount: "1 tbsp" },
+      { item: "Fresh parsley", amount: "1 tbsp" }
+    ],
+    instructions: "Cook pasta according to package.\nSauté garlic in olive oil for 1 minute.\nAdd tomatoes and cook 3 minutes.\nAdd tuna and olives, warm through.\nToss with drained pasta.\nTop with parsley and serve.",
+    protein: 38,
+    carbs: 62,
+    fat: 14,
+    calories: 526,
+    prepTime: 20,
+    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800"
+  },
+  {
+    id: 289,
+    name: "Grilled Halloumi Quinoa Salad",
+    mealType: "lunch",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Halloumi cheese, sliced", amount: "80g" },
+      { item: "Cooked quinoa", amount: "1/2 cup" },
+      { item: "Mixed greens", amount: "2 cups" },
+      { item: "Cherry tomatoes, halved", amount: "1/2 cup" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Lemon juice", amount: "1 tbsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Grill halloumi in a dry pan 2 minutes per side.\nCombine greens, quinoa, tomatoes and cucumber.\nDress with lemon, olive oil and salt.\nTop with warm halloumi.\nAdd black pepper.\nServe immediately.",
+    protein: 26,
+    carbs: 28,
+    fat: 26,
+    calories: 450,
+    prepTime: 15,
+    image: "https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg"
+  },
+  {
+    id: 290,
+    name: "Chicken & Vegetable Soup",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken thighs, boneless", amount: "150g" },
+      { item: "Carrot, sliced", amount: "1 carrot" },
+      { item: "Celery, sliced", amount: "1 stalk" },
+      { item: "Zucchini, diced", amount: "1/2 zucchini" },
+      { item: "Potato, diced", amount: "1 small" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Fresh dill", amount: "1 tbsp" }
+    ],
+    instructions: "Place chicken and onion in a pot with 3 cups water.\nBring to a boil and skim the foam.\nAdd carrot, celery and potato; simmer 25 minutes.\nAdd zucchini for the last 8 minutes.\nShred the chicken and return to the pot.\nSeason, add dill and serve.",
+    protein: 34,
+    carbs: 25,
+    fat: 10,
+    calories: 326,
+    prepTime: 40,
+    image: "https://images.pexels.com/photos/32655229/pexels-photo-32655229.jpeg"
+  },
+  {
+    id: 291,
+    name: "Egg Salad Pita",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Eggs, hard-boiled", amount: "3 eggs" },
+      { item: "Light mayonnaise", amount: "1 tbsp" },
+      { item: "Mustard", amount: "1 tsp" },
+      { item: "Green onion, sliced", amount: "1 stalk" },
+      { item: "Pita bread", amount: "1 pita" },
+      { item: "Lettuce", amount: "1/2 cup" },
+      { item: "Tomato, sliced", amount: "1 tomato" }
+    ],
+    instructions: "Peel and chop the eggs.\nMix with mayonnaise, mustard, green onion, salt and pepper.\nWarm the pita and open it.\nLine with lettuce and tomato.\nFill with egg salad.\nServe immediately.",
+    protein: 24,
+    carbs: 36,
+    fat: 20,
+    calories: 420,
+    prepTime: 15,
+    image: "https://images.pexels.com/photos/31150259/pexels-photo-31150259.jpeg"
+  },
+  {
+    id: 292,
+    name: "Two-Bean Veggie Chili",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Kidney beans, canned", amount: "1/2 cup" },
+      { item: "Black beans, canned", amount: "1/2 cup" },
+      { item: "Crushed tomatoes", amount: "1 cup" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Bell pepper, diced", amount: "1/2 pepper" },
+      { item: "Cumin", amount: "1 tsp" },
+      { item: "Chili powder", amount: "1/2 tsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Sauté onion and pepper in olive oil 5 minutes.\nAdd cumin and chili powder, stir 30 seconds.\nAdd crushed tomatoes and both beans.\nSimmer 20 minutes, stirring occasionally.\nSeason with salt and pepper.\nServe with rice or bread.",
+    protein: 22,
+    carbs: 62,
+    fat: 6,
+    calories: 390,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/9928340/pexels-photo-9928340.jpeg"
+  },
+  {
+    id: 293,
+    name: "Chicken Fajita Bowl",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken breast, sliced", amount: "150g" },
+      { item: "Bell pepper, sliced", amount: "1 pepper" },
+      { item: "Onion, sliced", amount: "1/2 onion" },
+      { item: "Cooked rice", amount: "1/2 cup" },
+      { item: "Black beans, canned", amount: "1/3 cup" },
+      { item: "Salsa", amount: "2 tbsp" },
+      { item: "Avocado", amount: "1/4 avocado" }
+    ],
+    instructions: "Season chicken with paprika, cumin and salt.\nSear chicken in a hot pan for 6 minutes.\nAdd peppers and onion, cook 4 minutes.\nWarm rice and beans.\nAssemble bowl with rice, beans, chicken and vegetables.\nTop with salsa and avocado.",
+    protein: 44,
+    carbs: 55,
+    fat: 14,
+    calories: 522,
+    prepTime: 25,
+    image: "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg"
+  },
+  {
+    id: 294,
+    name: "Baked Potato with Tuna & Corn",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Potato", amount: "1 large" },
+      { item: "Canned tuna in water", amount: "1 can" },
+      { item: "Corn kernels", amount: "1/4 cup" },
+      { item: "Light mayonnaise", amount: "1 tbsp" },
+      { item: "Green onion, sliced", amount: "1 stalk" }
+    ],
+    instructions: "Microwave potato 8-10 minutes until soft (or bake 50 minutes).\nMix tuna, corn, mayonnaise and green onion.\nSeason with salt and pepper.\nCut the potato open.\nFill with the tuna mixture.\nServe warm.",
+    protein: 34,
+    carbs: 55,
+    fat: 8,
+    calories: 428,
+    prepTime: 15,
+    image: "https://images.pexels.com/photos/9219074/pexels-photo-9219074.jpeg"
+  },
+  {
+    id: 295,
+    name: "Beef Kofta with Tabbouleh",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Lean ground beef", amount: "150g" },
+      { item: "Onion, grated", amount: "1/4 onion" },
+      { item: "Fresh parsley, chopped", amount: "1/2 cup" },
+      { item: "Cumin", amount: "1 tsp" },
+      { item: "Bulgur", amount: "1/3 cup dry" },
+      { item: "Tomato, diced", amount: "1 tomato" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Lemon juice", amount: "1 tbsp" }
+    ],
+    instructions: "Soak bulgur in boiling water for 15 minutes, drain.\nMix beef, onion, half the parsley, cumin and salt; shape 4 kofta.\nGrill or pan-fry kofta 4 minutes per side.\nMix bulgur with tomato, cucumber, remaining parsley and lemon.\nSeason the tabbouleh with salt and olive oil.\nServe kofta over tabbouleh.",
+    protein: 38,
+    carbs: 40,
+    fat: 22,
+    calories: 510,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/6419696/pexels-photo-6419696.jpeg"
+  },
+  {
+    id: 296,
+    name: "Couscous Salad with Chickpeas & Feta",
+    mealType: "lunch",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Couscous", amount: "1/3 cup dry" },
+      { item: "Chickpeas, canned", amount: "1/2 cup" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Cherry tomatoes, halved", amount: "1/2 cup" },
+      { item: "Feta cheese", amount: "30g" },
+      { item: "Fresh mint", amount: "1 tbsp" },
+      { item: "Lemon juice", amount: "1 tbsp" }
+    ],
+    instructions: "Pour boiling water over couscous, cover 5 minutes, fluff.\nRinse chickpeas.\nMix couscous with chickpeas, cucumber and tomatoes.\nDress with lemon, olive oil and salt.\nTop with crumbled feta and mint.\nServe.",
+    protein: 22,
+    carbs: 62,
+    fat: 14,
+    calories: 462,
+    prepTime: 15,
+    image: "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=800"
+  },
+  {
+    id: 297,
+    name: "Turkey & Hummus Sandwich",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Whole wheat bread", amount: "2 slices" },
+      { item: "Sliced turkey breast", amount: "100g" },
+      { item: "Hummus", amount: "2 tbsp" },
+      { item: "Lettuce", amount: "2 leaves" },
+      { item: "Tomato, sliced", amount: "1 tomato" },
+      { item: "Pickles, sliced", amount: "1 pickle" }
+    ],
+    instructions: "Spread hummus on both bread slices.\nLayer lettuce and tomato.\nAdd turkey slices.\nTop with pickles.\nClose and cut in half.\nServe or pack for later.",
+    protein: 32,
+    carbs: 34,
+    fat: 10,
+    calories: 354,
+    prepTime: 5,
+    image: "https://images.pexels.com/photos/4955260/pexels-photo-4955260.jpeg"
+  },
+  {
+    id: 298,
+    name: "Tofu Rice Bowl with Peanut Sauce",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Firm tofu, cubed", amount: "150g" },
+      { item: "Cooked rice", amount: "3/4 cup" },
+      { item: "Broccoli florets", amount: "1 cup" },
+      { item: "Carrot, grated", amount: "1 carrot" },
+      { item: "Peanut butter", amount: "1 tbsp" },
+      { item: "Soy sauce", amount: "1 tbsp" },
+      { item: "Lime juice", amount: "1 tsp" }
+    ],
+    instructions: "Pan-fry tofu until golden on all sides, 8 minutes.\nSteam broccoli for 4 minutes.\nWhisk peanut butter, soy sauce, lime and 2 tbsp warm water.\nPlace rice in a bowl.\nTop with tofu, broccoli and carrot.\nDrizzle peanut sauce and serve.",
+    protein: 30,
+    carbs: 55,
+    fat: 20,
+    calories: 520,
+    prepTime: 25,
+    image: "https://images.pexels.com/photos/30506297/pexels-photo-30506297.jpeg"
+  },
+  {
+    id: 299,
+    name: "Chicken Meatballs in Tomato Sauce with Rice",
+    mealType: "lunch",
+    kosher: "meat",
+    ingredients: [
+      { item: "Ground chicken", amount: "150g" },
+      { item: "Breadcrumbs", amount: "2 tbsp" },
+      { item: "Egg", amount: "1 egg" },
+      { item: "Tomato sauce", amount: "1 cup" },
+      { item: "Garlic, minced", amount: "1 clove" },
+      { item: "Cooked rice", amount: "3/4 cup" },
+      { item: "Fresh parsley", amount: "1 tbsp" }
+    ],
+    instructions: "Mix chicken, breadcrumbs, egg, parsley and salt.\nForm 6 small meatballs.\nBring tomato sauce and garlic to a simmer.\nAdd meatballs, cover and cook 15 minutes.\nWarm the rice.\nServe meatballs and sauce over rice.",
+    protein: 36,
+    carbs: 55,
+    fat: 12,
+    calories: 472,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/8879226/pexels-photo-8879226.jpeg"
+  },
+  {
+    id: 300,
+    name: "Cauliflower Egg Fried 'Rice'",
+    mealType: "lunch",
+    kosher: "parve",
+    ingredients: [
+      { item: "Cauliflower, riced", amount: "2 cups" },
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "Frozen peas and carrots", amount: "1/2 cup" },
+      { item: "Soy sauce", amount: "1 tbsp" },
+      { item: "Green onion, sliced", amount: "1 stalk" },
+      { item: "Sesame oil", amount: "1 tsp" }
+    ],
+    instructions: "Grate cauliflower or pulse in a food processor.\nHeat sesame oil in a wok.\nStir-fry peas and carrots 2 minutes.\nAdd cauliflower and cook 5 minutes.\nPush aside, scramble the eggs, then mix in.\nAdd soy sauce and green onion, serve.",
+    protein: 20,
+    carbs: 18,
+    fat: 14,
+    calories: 278,
+    prepTime: 15,
+    image: "https://images.pexels.com/photos/723198/pexels-photo-723198.jpeg"
+  },
+  // more lunch recipes end
+
+  // more dinner recipes (kosher: meat / dairy / parve) start
+  {
+    id: 301,
+    name: "Baked Salmon with Tahini & Potatoes",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "Salmon fillet", amount: "150g" },
+      { item: "Baby potatoes, halved", amount: "200g" },
+      { item: "Tahini", amount: "1.5 tbsp" },
+      { item: "Lemon juice", amount: "1 tbsp" },
+      { item: "Fresh parsley", amount: "1 tbsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Toss potatoes with olive oil and salt; roast at 210°C for 15 minutes.\nAdd salmon to the tray, season with salt and pepper.\nRoast 12-14 more minutes.\nWhisk tahini with lemon and water until creamy.\nDrizzle tahini over salmon.\nTop with parsley and serve.",
+    protein: 38,
+    carbs: 35,
+    fat: 28,
+    calories: 544,
+    prepTime: 35,
+    image: "https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg"
+  },
+  {
+    id: 302,
+    name: "Silan & Sesame Chicken Thighs",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken thighs, boneless", amount: "180g" },
+      { item: "Silan (date syrup)", amount: "1 tbsp" },
+      { item: "Soy sauce", amount: "1 tbsp" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Sesame seeds", amount: "1 tsp" },
+      { item: "Cooked rice", amount: "1/2 cup" }
+    ],
+    instructions: "Mix silan, soy sauce and garlic.\nCoat chicken in the sauce and marinate 10 minutes.\nRoast at 200°C for 22-25 minutes, basting once.\nSprinkle sesame seeds.\nWarm the rice.\nServe chicken over rice.",
+    protein: 40,
+    carbs: 30,
+    fat: 18,
+    calories: 442,
+    prepTime: 35,
+    image: "https://images.pexels.com/photos/13065193/pexels-photo-13065193.jpeg"
+  },
+  {
+    id: 303,
+    name: "Chraime (Spicy Moroccan Fish)",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "White fish fillet", amount: "180g" },
+      { item: "Tomato paste", amount: "1 tbsp" },
+      { item: "Red bell pepper, sliced", amount: "1/2 pepper" },
+      { item: "Garlic, sliced", amount: "4 cloves" },
+      { item: "Paprika", amount: "1 tsp" },
+      { item: "Cumin", amount: "1/2 tsp" },
+      { item: "Fresh cilantro", amount: "2 tbsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Sauté garlic and pepper in olive oil 3 minutes.\nAdd tomato paste, paprika, cumin and 1/2 cup water.\nSimmer the sauce 5 minutes.\nAdd fish and spoon sauce over it.\nCover and cook 10-12 minutes.\nTop with cilantro and serve with bread.",
+    protein: 38,
+    carbs: 10,
+    fat: 14,
+    calories: 318,
+    prepTime: 30,
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800"
+  },
+  {
+    id: 304,
+    name: "Grilled Beef Kebabs with Vegetables",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Beef sirloin, cubed", amount: "160g" },
+      { item: "Bell pepper, chunks", amount: "1 pepper" },
+      { item: "Onion, chunks", amount: "1/2 onion" },
+      { item: "Zucchini, sliced", amount: "1/2 zucchini" },
+      { item: "Olive oil", amount: "1 tsp" },
+      { item: "Garlic powder", amount: "1/2 tsp" },
+      { item: "Paprika", amount: "1 tsp" }
+    ],
+    instructions: "Toss beef with oil, garlic powder, paprika and salt.\nThread beef and vegetables onto skewers.\nPreheat grill pan over high heat.\nGrill 8-10 minutes, turning occasionally.\nRest 3 minutes.\nServe with tahini or salad.",
+    protein: 40,
+    carbs: 15,
+    fat: 22,
+    calories: 418,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/9510363/pexels-photo-9510363.jpeg"
+  },
+  {
+    id: 305,
+    name: "Turkey Steak with Sweet Potato Mash",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Turkey breast cutlet", amount: "180g" },
+      { item: "Sweet potato", amount: "200g" },
+      { item: "Green beans", amount: "1 cup" },
+      { item: "Garlic, minced", amount: "1 clove" },
+      { item: "Olive oil", amount: "1 tsp" },
+      { item: "Salt and pepper", amount: "to taste" }
+    ],
+    instructions: "Boil sweet potato chunks 15 minutes, mash with salt.\nSeason turkey with garlic, salt and pepper.\nSear turkey in olive oil 4 minutes per side.\nSteam green beans 5 minutes.\nRest turkey 2 minutes and slice.\nServe with mash and green beans.",
+    protein: 46,
+    carbs: 40,
+    fat: 10,
+    calories: 434,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg"
+  },
+  {
+    id: 306,
+    name: "Vegetable & Feta Frittata",
+    mealType: "dinner",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Eggs", amount: "4 eggs" },
+      { item: "Zucchini, grated", amount: "1/2 zucchini" },
+      { item: "Onion, diced", amount: "1/4 onion" },
+      { item: "Spinach", amount: "1 cup" },
+      { item: "Feta cheese", amount: "30g" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Preheat oven to 190°C.\nSauté onion, zucchini and spinach in an oven-safe pan.\nWhisk eggs with salt and pepper and pour over.\nCrumble feta on top.\nCook 3 minutes on the stove, then bake 10-12 minutes.\nSlice and serve with salad.",
+    protein: 32,
+    carbs: 10,
+    fat: 24,
+    calories: 384,
+    prepTime: 25,
+    image: "https://images.pexels.com/photos/12310569/pexels-photo-12310569.jpeg"
+  },
+  {
+    id: 307,
+    name: "Chicken & Cashew Stir-Fry",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken breast, cubed", amount: "150g" },
+      { item: "Cashews", amount: "20g" },
+      { item: "Bell pepper, sliced", amount: "1 pepper" },
+      { item: "Broccoli florets", amount: "1 cup" },
+      { item: "Soy sauce", amount: "2 tbsp" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Cooked rice", amount: "3/4 cup" }
+    ],
+    instructions: "Toast cashews in a dry wok, set aside.\nStir-fry chicken 5 minutes.\nAdd garlic, pepper and broccoli; cook 3 minutes.\nAdd soy sauce and a splash of water.\nToss in cashews.\nServe over rice.",
+    protein: 42,
+    carbs: 50,
+    fat: 18,
+    calories: 530,
+    prepTime: 20,
+    image: "https://images.pexels.com/photos/34599519/pexels-photo-34599519.png"
+  },
+  {
+    id: 308,
+    name: "Eggplant Shakshuka",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "Eggplant, diced", amount: "1/2 eggplant" },
+      { item: "Tomatoes, diced", amount: "2 tomatoes" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Bell pepper, diced", amount: "1/2 pepper" },
+      { item: "Paprika", amount: "1 tsp" },
+      { item: "Olive oil", amount: "1 tbsp" }
+    ],
+    instructions: "Fry eggplant in olive oil until golden, 8 minutes.\nAdd pepper and garlic, cook 3 minutes.\nAdd tomatoes and paprika, simmer 10 minutes.\nMake wells and crack in the eggs.\nCover and cook 5-6 minutes.\nServe with bread.",
+    protein: 18,
+    carbs: 20,
+    fat: 16,
+    calories: 296,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/30892286/pexels-photo-30892286.jpeg"
+  },
+  {
+    id: 309,
+    name: "Tilapia & Vegetables in Foil",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "Tilapia fillet", amount: "180g" },
+      { item: "Zucchini, sliced", amount: "1/2 zucchini" },
+      { item: "Cherry tomatoes", amount: "6 tomatoes" },
+      { item: "Onion, sliced", amount: "1/4 onion" },
+      { item: "Lemon, sliced", amount: "1/2 lemon" },
+      { item: "Garlic, minced", amount: "1 clove" },
+      { item: "Fresh dill", amount: "1 tbsp" }
+    ],
+    instructions: "Preheat oven to 200°C.\nLay vegetables on a large sheet of foil.\nPlace fish on top, season with salt, pepper and garlic.\nTop with lemon slices and dill.\nSeal the foil and bake 18-20 minutes.\nOpen carefully and serve.",
+    protein: 40,
+    carbs: 12,
+    fat: 10,
+    calories: 298,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg"
+  },
+  {
+    id: 310,
+    name: "Spaghetti with Turkey Bolognese",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Ground turkey", amount: "150g" },
+      { item: "Whole wheat spaghetti", amount: "80g" },
+      { item: "Crushed tomatoes", amount: "1 cup" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Carrot, grated", amount: "1 carrot" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Fresh basil", amount: "4 leaves" }
+    ],
+    instructions: "Cook spaghetti according to package.\nSauté onion, carrot and garlic 5 minutes.\nAdd turkey and brown, breaking it up.\nAdd crushed tomatoes, salt and pepper; simmer 15 minutes.\nToss with drained spaghetti.\nTop with basil and serve.",
+    protein: 44,
+    carbs: 66,
+    fat: 12,
+    calories: 548,
+    prepTime: 30,
+    image: "https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800"
+  },
+  {
+    id: 311,
+    name: "Spinach-Stuffed Chicken Breast",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken breast", amount: "180g" },
+      { item: "Spinach", amount: "1 cup" },
+      { item: "Sun-dried tomatoes, chopped", amount: "4 pieces" },
+      { item: "Garlic, minced", amount: "1 clove" },
+      { item: "Olive oil", amount: "1 tsp" },
+      { item: "Paprika", amount: "1/2 tsp" }
+    ],
+    instructions: "Sauté spinach and garlic until wilted; mix with sun-dried tomatoes.\nCut a pocket into the chicken breast.\nStuff with the spinach mixture and close with a toothpick.\nRub with olive oil, paprika and salt.\nBake at 200°C for 22-25 minutes.\nRest 5 minutes, slice and serve.",
+    protein: 50,
+    carbs: 8,
+    fat: 14,
+    calories: 358,
+    prepTime: 35,
+    image: "https://images.pexels.com/photos/145804/pexels-photo-145804.jpeg"
+  },
+  {
+    id: 312,
+    name: "Sweet Potato & Chickpea Curry",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "Chickpeas, canned", amount: "1/2 cup" },
+      { item: "Sweet potato, cubed", amount: "1 medium" },
+      { item: "Light coconut milk", amount: "1/3 cup" },
+      { item: "Curry powder", amount: "1 tsp" },
+      { item: "Spinach", amount: "1 cup" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Cooked rice", amount: "1/2 cup" }
+    ],
+    instructions: "Sauté onion until soft.\nAdd curry powder and stir 30 seconds.\nAdd sweet potato, chickpeas, coconut milk and 1/2 cup water.\nSimmer 20 minutes until potato is tender.\nStir in spinach until wilted.\nServe over rice.",
+    protein: 18,
+    carbs: 75,
+    fat: 16,
+    calories: 516,
+    prepTime: 35,
+    image: "https://images.pexels.com/photos/10464100/pexels-photo-10464100.jpeg"
+  },
+  {
+    id: 313,
+    name: "Fish Patties in Tomato Sauce",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "White fish fillet, minced", amount: "180g" },
+      { item: "Egg", amount: "1 egg" },
+      { item: "Breadcrumbs", amount: "2 tbsp" },
+      { item: "Onion, grated", amount: "1/4 onion" },
+      { item: "Fresh parsley", amount: "2 tbsp" },
+      { item: "Tomato sauce", amount: "1 cup" },
+      { item: "Paprika", amount: "1 tsp" },
+      { item: "Garlic, minced", amount: "2 cloves" }
+    ],
+    instructions: "Mix fish, egg, breadcrumbs, onion, parsley and salt.\nShape into 5 small patties.\nSimmer tomato sauce with garlic and paprika.\nGently add the patties to the sauce.\nCover and cook 20 minutes.\nServe with rice or bread.",
+    protein: 40,
+    carbs: 22,
+    fat: 12,
+    calories: 356,
+    prepTime: 35,
+    image: "https://images.pexels.com/photos/8879226/pexels-photo-8879226.jpeg"
+  },
+  {
+    id: 314,
+    name: "Lean Beef Goulash with Potatoes",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Beef chuck, cubed", amount: "150g" },
+      { item: "Potato, cubed", amount: "1 medium" },
+      { item: "Onion, diced", amount: "1 onion" },
+      { item: "Carrot, sliced", amount: "1 carrot" },
+      { item: "Paprika", amount: "2 tsp" },
+      { item: "Tomato paste", amount: "1 tbsp" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Brown beef in olive oil, remove.\nSauté onion until golden.\nAdd paprika and tomato paste, stir 1 minute.\nReturn beef, add 2 cups water and simmer covered 60 minutes.\nAdd potato and carrot, cook 25 minutes more.\nSeason and serve.",
+    protein: 38,
+    carbs: 35,
+    fat: 16,
+    calories: 436,
+    prepTime: 90,
+    image: "https://images.pexels.com/photos/8477816/pexels-photo-8477816.jpeg"
+  },
+  {
+    id: 315,
+    name: "Lemon Garlic Chicken with Green Beans & Rice",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken breast", amount: "160g" },
+      { item: "Green beans", amount: "1 cup" },
+      { item: "Cooked rice", amount: "3/4 cup" },
+      { item: "Lemon", amount: "1/2 lemon" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Season chicken with salt, pepper and garlic.\nSear in olive oil 6 minutes per side.\nSqueeze lemon over the chicken and let it bubble.\nSteam green beans 5 minutes.\nWarm the rice.\nSlice chicken and serve with beans and rice.",
+    protein: 45,
+    carbs: 45,
+    fat: 12,
+    calories: 468,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/5718071/pexels-photo-5718071.jpeg"
+  },
+  {
+    id: 316,
+    name: "Crustless Cottage Cheese & Zucchini Pashtida",
+    mealType: "dinner",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Eggs", amount: "2 eggs" },
+      { item: "Cottage cheese 5%", amount: "150g" },
+      { item: "Zucchini, grated", amount: "1 zucchini" },
+      { item: "Yellow cheese (light), grated", amount: "20g" },
+      { item: "Onion, diced", amount: "1/4 onion" },
+      { item: "Salt and pepper", amount: "to taste" }
+    ],
+    instructions: "Preheat oven to 180°C.\nSqueeze excess water out of the grated zucchini.\nMix eggs, cottage cheese, zucchini, onion, salt and pepper.\nPour into a small baking dish.\nTop with yellow cheese.\nBake 30-35 minutes until golden and set.",
+    protein: 36,
+    carbs: 10,
+    fat: 16,
+    calories: 328,
+    prepTime: 40,
+    image: "https://images.pexels.com/photos/6294362/pexels-photo-6294362.jpeg"
+  },
+  {
+    id: 317,
+    name: "Oven-Baked Turkey Schnitzel with Israeli Salad",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Turkey breast cutlet", amount: "150g" },
+      { item: "Egg", amount: "1 egg" },
+      { item: "Breadcrumbs", amount: "1/3 cup" },
+      { item: "Cucumber, diced", amount: "1 cucumber" },
+      { item: "Tomato, diced", amount: "1 tomato" },
+      { item: "Onion, diced", amount: "1/4 onion" },
+      { item: "Lemon juice", amount: "1 tbsp" }
+    ],
+    instructions: "Preheat oven to 210°C.\nDip turkey in beaten egg, then coat in breadcrumbs.\nPlace on a lined tray and spray with oil.\nBake 18-20 minutes, flipping halfway.\nDice vegetables and dress with lemon, olive oil and salt.\nServe schnitzel with the salad.",
+    protein: 42,
+    carbs: 30,
+    fat: 14,
+    calories: 414,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/12035744/pexels-photo-12035744.jpeg"
+  },
+  {
+    id: 318,
+    name: "Chicken Drumsticks & Potato Tray Bake",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken drumsticks", amount: "2 drumsticks (250g)" },
+      { item: "Potatoes, cubed", amount: "200g" },
+      { item: "Onion, quartered", amount: "1/2 onion" },
+      { item: "Fresh rosemary", amount: "1 sprig" },
+      { item: "Paprika", amount: "1 tsp" },
+      { item: "Garlic, whole cloves", amount: "3 cloves" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Preheat oven to 200°C.\nToss potatoes, onion and garlic with oil and salt on a tray.\nRub drumsticks with paprika, salt and pepper.\nNestle chicken on the vegetables with rosemary.\nRoast 45 minutes until golden and cooked through.\nServe hot.",
+    protein: 42,
+    carbs: 38,
+    fat: 22,
+    calories: 518,
+    prepTime: 55,
+    image: "https://images.pexels.com/photos/31233881/pexels-photo-31233881.jpeg"
+  },
+  {
+    id: 319,
+    name: "Mushroom Barley & White Bean Soup",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "Pearl barley", amount: "1/3 cup" },
+      { item: "Mushrooms, sliced", amount: "1 cup" },
+      { item: "White beans, canned", amount: "1/2 cup" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Carrot, diced", amount: "1 carrot" },
+      { item: "Celery, diced", amount: "1 stalk" },
+      { item: "Vegetable broth", amount: "3 cups" }
+    ],
+    instructions: "Sauté onion, carrot and celery 5 minutes.\nAdd mushrooms and cook 5 minutes.\nAdd barley and broth.\nSimmer covered 35 minutes.\nAdd white beans and cook 5 more minutes.\nSeason with salt, pepper and serve.",
+    protein: 20,
+    carbs: 62,
+    fat: 6,
+    calories: 382,
+    prepTime: 50,
+    image: "https://images.pexels.com/photos/19870150/pexels-photo-19870150.jpeg"
+  },
+  {
+    id: 320,
+    name: "Salmon Patties with Yogurt-Dill Sauce",
+    mealType: "dinner",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Salmon fillet, minced", amount: "150g" },
+      { item: "Egg", amount: "1 egg" },
+      { item: "Rolled oats", amount: "3 tbsp" },
+      { item: "Green onion, sliced", amount: "1 stalk" },
+      { item: "Greek yogurt", amount: "100g" },
+      { item: "Fresh dill", amount: "1 tbsp" },
+      { item: "Lemon juice", amount: "1 tsp" }
+    ],
+    instructions: "Mix salmon, egg, oats, green onion and salt.\nShape into 3 patties.\nPan-fry in a little oil 3-4 minutes per side.\nMix yogurt with dill, lemon and salt.\nServe patties with the sauce.\nAdd a green salad on the side.",
+    protein: 44,
+    carbs: 18,
+    fat: 20,
+    calories: 428,
+    prepTime: 25,
+    image: "https://images.pexels.com/photos/31010018/pexels-photo-31010018.jpeg"
+  },
+  {
+    id: 321,
+    name: "Eggplant & Chickpea Tagine",
+    mealType: "dinner",
+    kosher: "parve",
+    ingredients: [
+      { item: "Eggplant, cubed", amount: "1/2 eggplant" },
+      { item: "Chickpeas, canned", amount: "1/2 cup" },
+      { item: "Crushed tomatoes", amount: "1 cup" },
+      { item: "Onion, diced", amount: "1/2 onion" },
+      { item: "Ras el hanout", amount: "1 tsp" },
+      { item: "Dried apricots, chopped", amount: "3 apricots" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Sauté onion and eggplant in olive oil 8 minutes.\nAdd ras el hanout, stir 30 seconds.\nAdd tomatoes, chickpeas, apricots and 1/2 cup water.\nSimmer covered 25 minutes.\nSeason with salt and pepper.\nServe with couscous or bread.",
+    protein: 16,
+    carbs: 50,
+    fat: 12,
+    calories: 372,
+    prepTime: 40,
+    image: "https://images.pexels.com/photos/674574/pexels-photo-674574.jpeg"
+  },
+  {
+    id: 322,
+    name: "Chicken Kofta with Zucchini & Rice",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Ground chicken", amount: "150g" },
+      { item: "Onion, grated", amount: "1/4 onion" },
+      { item: "Fresh parsley", amount: "2 tbsp" },
+      { item: "Cumin", amount: "1/2 tsp" },
+      { item: "Zucchini, sliced", amount: "1 zucchini" },
+      { item: "Cooked rice", amount: "1/2 cup" },
+      { item: "Olive oil", amount: "1 tsp" }
+    ],
+    instructions: "Mix chicken, onion, parsley, cumin and salt.\nShape into small koftas.\nPan-fry koftas in olive oil 10 minutes, turning.\nGrill zucchini slices in the same pan.\nWarm the rice.\nServe koftas with zucchini and rice.",
+    protein: 40,
+    carbs: 40,
+    fat: 14,
+    calories: 446,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/15957257/pexels-photo-15957257.jpeg"
+  },
+  {
+    id: 323,
+    name: "Steak with Chimichurri & Roasted Potatoes",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Sirloin steak", amount: "180g" },
+      { item: "Potatoes, cubed", amount: "200g" },
+      { item: "Fresh parsley, chopped", amount: "1/4 cup" },
+      { item: "Garlic, minced", amount: "1 clove" },
+      { item: "Olive oil", amount: "1 tbsp" },
+      { item: "Red wine vinegar", amount: "1 tsp" },
+      { item: "Chili flakes", amount: "pinch" }
+    ],
+    instructions: "Roast potatoes with a little oil and salt at 210°C for 30 minutes.\nMix parsley, garlic, olive oil, vinegar, chili and salt for chimichurri.\nSeason steak with salt and pepper.\nSear in a very hot pan 3-4 minutes per side.\nRest 5 minutes, then slice.\nServe with potatoes and chimichurri.",
+    protein: 46,
+    carbs: 35,
+    fat: 24,
+    calories: 540,
+    prepTime: 40,
+    image: "https://images.unsplash.com/photo-1558030006-450675393462?w=800"
+  },
+  {
+    id: 324,
+    name: "Creamy Mushroom Pasta",
+    mealType: "dinner",
+    kosher: "dairy",
+    ingredients: [
+      { item: "Whole wheat pasta", amount: "80g" },
+      { item: "Mushrooms, sliced", amount: "1.5 cups" },
+      { item: "Garlic, minced", amount: "2 cloves" },
+      { item: "Light cooking cream", amount: "1/4 cup" },
+      { item: "Parmesan cheese, grated", amount: "15g" },
+      { item: "Fresh parsley", amount: "1 tbsp" }
+    ],
+    instructions: "Cook pasta according to package.\nSauté mushrooms until golden, 6 minutes.\nAdd garlic and cook 1 minute.\nPour in cream and simmer 2 minutes.\nToss with pasta and parmesan.\nTop with parsley and serve.",
+    protein: 22,
+    carbs: 65,
+    fat: 16,
+    calories: 492,
+    prepTime: 20,
+    image: "https://images.unsplash.com/photo-1476124369491-f61c20c8a4a6?w=800"
+  },
+  {
+    id: 325,
+    name: "Chicken Salad with Tahini & Roasted Chickpeas",
+    mealType: "dinner",
+    kosher: "meat",
+    ingredients: [
+      { item: "Chicken breast", amount: "150g" },
+      { item: "Chickpeas, canned", amount: "1/2 cup" },
+      { item: "Mixed greens", amount: "2 cups" },
+      { item: "Cucumber, diced", amount: "1/2 cucumber" },
+      { item: "Cherry tomatoes, halved", amount: "1/2 cup" },
+      { item: "Tahini", amount: "1.5 tbsp" },
+      { item: "Paprika", amount: "1 tsp" }
+    ],
+    instructions: "Toss chickpeas with paprika, salt and a little oil; roast at 210°C for 20 minutes.\nGrill chicken 6 minutes per side and slice.\nCombine greens, cucumber and tomatoes.\nThin tahini with lemon and water.\nTop salad with chicken and crispy chickpeas.\nDrizzle tahini and serve.",
+    protein: 46,
+    carbs: 30,
+    fat: 22,
+    calories: 502,
+    prepTime: 30,
+    image: "https://images.pexels.com/photos/19526778/pexels-photo-19526778.jpeg"
+  },
+  // more dinner recipes end
 
 
 ]
