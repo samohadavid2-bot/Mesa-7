@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Mesa</string>
     <string name="title_activity_main">Mesa</string>
-    <string name="package_name">com.mesa.app</string>
-    <string name="custom_url_scheme">com.mesa.app</string>
+    <string name="package_name">app.mesa7.kosher</string>
+    <string name="custom_url_scheme">app.mesa7.kosher</string>
 </resources>
