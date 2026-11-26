@@ -3,7 +3,7 @@ import { closeRecipePopup } from "./recipesPopup.js";
 import { createRecipeCard } from "./recipeCard.js";
 import { MEAL_TYPES, KOSHER_TYPES, getMealType, getKosherType } from "./recipeMeta.js";
 import { INGREDIENTS, PANTRY_CHOICES, DEFAULT_PANTRY, textToKey, keyLabel, findRecipes } from "./ingredients.js";
-import { getApiKey, setApiKey, prepareImage, scanFridge, ScanError } from "./fridgeScan.js";
+import { PROVIDERS, getProvider, setProvider, getApiKey, setApiKey, prepareImage, scanFridge, ScanError } from "./fridgeScan.js";
 window.closeRecipePopup = closeRecipePopup;
 
 const MAX_PHOTOS = 4;
@@ -41,11 +41,27 @@ const settingsPanel = $(".settingsPanel");
 const apiKeyInput = $(".apiKeyInput");
 const keyStatus = $(".keyStatus");
 
+const providerSelect = $(".providerSelect");
+
 function refreshKeyStatus() {
-  const key = getApiKey();
+  const provider = getProvider();
+  const info = PROVIDERS[provider];
+  providerSelect.value = provider;
+  $(".providerNote").textContent = info.note;
+  const link = $(".keyLink");
+  link.href = info.keyUrl;
+  link.textContent = info.keySite;
+  apiKeyInput.placeholder = info.keyHint;
+
+  const key = getApiKey(provider);
   keyStatus.textContent = key ? `✓ Key saved (…${key.slice(-4)})` : "No key saved yet.";
   keyStatus.className = "keyStatus" + (key ? " ok" : "");
 }
+
+providerSelect.addEventListener("change", () => {
+  setProvider(providerSelect.value);
+  refreshKeyStatus();
+});
 
 function openSettings() {
   settingsPanel.hidden = false;
@@ -129,7 +145,7 @@ for (const input of [$(".cameraInput"), $(".uploadInput")]) {
 
 scanBtn.addEventListener("click", async () => {
   if (!getApiKey()) {
-    setStatus("Add your Anthropic API key to scan photos.", "warn");
+    setStatus("Add a free Google Gemini key (or a Claude key) in AI settings to scan photos.", "warn");
     openSettings();
     return;
   }
@@ -200,7 +216,9 @@ function renderIngredients() {
     if (item.name && item.name.toLowerCase() !== keyLabel(item.key).toLowerCase()) {
       const seen = document.createElement("span");
       seen.className = "chipSeen";
-      seen.textContent = item.name + (item.quantity ? ` · ${item.quantity}` : "");
+      const seenName = document.createElement("bdi");   // keeps Hebrew names readable
+      seenName.textContent = item.name;
+      seen.append(seenName, item.quantity ? ` · ${item.quantity}` : "");
       label.appendChild(seen);
     }
 

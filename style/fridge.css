@@ -406,3 +406,22 @@ body .header {
   position: relative;
   padding-bottom: 14px;
 }
+
+.settingsLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.providerSelect {
+  width: 100%;
+  border: 1.5px solid #dbeafe;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 15px;
+  background: #ffffff;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}

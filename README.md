@@ -13,23 +13,25 @@ A kosher, fitness-focused meal tracker. Track calories and macros, browse 300+ k
 
 ## Fridge scanner
 
-1. Open **Fridge** and tap **⚙ AI settings**. Paste an Anthropic API key from [console.anthropic.com](https://console.anthropic.com/settings/keys). The key is saved only in your browser (`localStorage`) and sent only to Anthropic.
+1. Open **Fridge** and tap **⚙ AI settings**. Pick an AI engine and paste its key:
+   - **Google Gemini (free, default)**: create a key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey) with a Google account. No credit card. If billing isn't turned on for that Google project, Google can't charge you; when the free daily limit runs out, scanning stops until it resets.
+   - **Claude (paid, most accurate)**: a key from [console.anthropic.com](https://console.anthropic.com/settings/keys), billed per scan from prepaid credits (a Claude subscription doesn't cover the API).
+
+   Keys are saved only on the device (`localStorage`) and sent only to that AI service.
 2. Take or upload up to 4 photos (fridge shelves, door, freezer).
-3. Tap **Scan ingredients**. Claude (`claude-opus-5-5`) reads every shelf, including Hebrew labels, and returns each item mapped to Mesa's ingredient list.
+3. Tap **Scan ingredients**. The AI reads every shelf, including Hebrew labels, and returns each item mapped to Mesa's ingredient list.
 4. Check the chips: remove mistakes (items it wasn't sure about are marked **?**) and add anything it missed.
 5. Under **Pantry items I always have**, tick what's in your cupboard (salt, oil, spices, rice...), since a fridge photo can't see those.
 6. Recipes are grouped into **Ready to cook**, **Missing 1 ingredient** and **Missing 2 ingredients**, and show exactly what's missing.
 
-Without an API key you can still type ingredients in by hand and get the same recipe matching.
-
-Each scan is a paid API call on your own Anthropic account.
+Without any key you can still type ingredients in by hand and get the same recipe matching.
 
 ## Code map
 
 - `scripts/recipes.js`: the recipe list. New recipes have `mealType` and `kosher` fields.
 - `scripts/recipeMeta.js`: meal type and kosher category (works out older recipes from their id range and ingredients).
 - `scripts/ingredients.js`: ingredient dictionary (aliases, staples, parent/child like "cheese" → "feta") and recipe matching.
-- `scripts/fridgeScan.js`: resizes photos and calls the Claude API from the browser (Anthropic TypeScript SDK loaded from jsDelivr).
+- `scripts/fridgeScan.js`: resizes photos and calls Google Gemini (`@google/genai`) or Claude (`@anthropic-ai/sdk`) from the device; both SDKs load from jsDelivr.
 - `scripts/fridgePage.js`: the Fridge page UI.
 - `scripts/recipeCard.js`, `scripts/recipesPopup.js`, `scripts/tracker.js`: recipe card, recipe popup, and "add to today", shared by the pages.
 

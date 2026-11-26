@@ -32,13 +32,18 @@
             </div>
 
             <div class="settingsPanel" hidden>
+                <label class="settingsLabel" for="providerSelect">AI engine</label>
+                <select id="providerSelect" class="providerSelect">
+                    <option value="gemini">Google Gemini (free)</option>
+                    <option value="claude">Claude (paid, most accurate)</option>
+                </select>
                 <p class="settingsText">
-                    The scan uses Claude (Anthropic's AI). Paste your own API key from
-                    <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>.
-                    It's saved only on this device and sent only to Anthropic.
+                    <span class="providerNote"></span>
+                    Get a key at <a class="keyLink" href="#" target="_blank" rel="noopener"></a>.
+                    It's saved only on this device and sent only to that AI service.
                 </p>
                 <div class="keyRow">
-                    <input class="apiKeyInput" type="password" placeholder="sk-ant-..." autocomplete="off" spellcheck="false">
+                    <input class="apiKeyInput" type="password" autocomplete="off" spellcheck="false">
                     <button class="saveKeyBtn primaryBtn small" type="button">Save</button>
                 </div>
                 <p class="keyStatus"></p>
